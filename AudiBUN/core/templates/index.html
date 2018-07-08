@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">AudiBun</a>
+        </li>
+        <li class="breadcrumb-item active">Principal</li>
+      </ol>
+
+{% include "menu.html" %}
+
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Cadastro de Empresas</div>
+        <div class="card-body">
+           {% if empresas %}
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>{{ form.ref_cad.label }}</th>
+                  <th>{{ form.name.label }}</th>
+                  <th>{{ form.endereco.label }}</th>
+                  <th>{{ form.responsavel.label }}</th>
+                  <th>{{ form.phone.label }}</th>
+                  <th>{{ form.situacao.label }}</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>{{ form.ref_cad.label }}</th>
+                  <th>{{ form.name.label }}</th>
+                  <th>{{ form.endereco.label }}</th>
+                  <th>{{ form.responsavel.label }}</th>
+                  <th>{{ form.phone.label }}</th>
+                  <th>{{ form.situacao.label }}</th>
+                </tr>
+              </tfoot>
+              <tbody>
+              {% for empresa in empresas %}
+                <tr>
+                  <td>{{ empresa.ref_cad }}</td>
+                  <td>{{ empresa.name }}</td>
+                  <td>{{ empresa.endereco }}</td>
+                  <td>{{ empresa.responsavel }}</td>
+                  <td>{{ empresa.phone }}</td>
+                  <td>{{ empresa.situacao }}</td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+        </div>
+        <div class="card-footer small text-muted">Dados atualizados em 20 de julho de 2018</div>
+      </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+
+{% endblock %}

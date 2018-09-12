@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
@@ -27,3 +27,27 @@ def create(request):
         # Sucess feedback
         messages.success(request, 'Inscrição Realizada com Sucesso !')
         return HttpResponseRedirect('/cadastroEmpresa/')
+
+def editar(request):
+    context = {'form': EmpresaForm(),
+               'empresas': EmpresaModel.objects.all()}
+    return render(request, 'empresas.html', context)
+
+def editar_empresa(request, id_empresa):
+    if request.method == 'POST':
+        form = EmpresaForm(request.POST)
+        if not form.is_valid():
+            context = {'form': EmpresaForm(),
+                       'empresas': EmpresaModel.objects.all()}
+            return render(request, 'empresas.html', context)
+        else:
+            EmpresaModel.objects.filter(pk=id_empresa).update(**form.cleaned_data)
+            # Sucess feedback
+            messages.success(request, 'Atualização Realizada com Sucesso !')
+            context = {'form': form}
+            return render(request, "editar.html", context)
+    else:
+        obj = get_object_or_404(EmpresaModel, pk=id_empresa)
+        form = EmpresaForm(instance=obj)
+        context = {'form': form}
+        return render(request, "editar.html", context)

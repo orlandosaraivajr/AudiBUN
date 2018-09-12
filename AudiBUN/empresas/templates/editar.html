@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/">AudiBun</a>
+        </li>
+        <li class="breadcrumb-item active">Editar cadastro da Empresa</li>
+      </ol>
+
+{% include "menu.html" %}
+
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Editar cadastro da Empresa</div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert success">
+                        <p>{{ message }} </p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        <div class="card-body">
+            <form action="." novalidate method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+
+                    <div class="container">
+                      <div class="row">
+                        <div class="col-sm">
+                            <label for="{{ form.ref_cad.id_for_label }}">{{ form.ref_cad.label }}</label>
+                            {{ form.ref_cad.errors }}
+                            {{ form.ref_cad }}
+                        </div>
+                        <div class="col-sm">
+                            <label for="{{ form.quadra.id_for_label }}">{{ form.quadra.label }}</label>
+                            {{ form.quadra.errors }}
+                            {{ form.quadra }}
+
+                        </div>
+                        <div class="col-sm">
+                            <label for="{{ form.lote.id_for_label }}">{{ form.lote.label }}</label>
+                            {{ form.lote.errors }}
+                            {{ form.lote }}
+                        </div>
+                      </div>
+                    <br>
+                    <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                        {{ form.name.errors }}
+                        {{ form.name }}
+                    <br>
+                    <label for="{{ form.atividade.id_for_label }}">{{ form.atividade.label }}</label>
+                    {{ form.atividade.errors }}
+                    {{ form.atividade }}
+                    <br>
+                    <label for="{{ form.endereco.id_for_label }}">{{ form.endereco.label }}</label>
+                    {{ form.endereco.errors }}
+                    {{ form.endereco }}
+                    <br>
+                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                    {{ form.email.errors }}
+                    {{ form.email }}
+                    <br>
+                    <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+                    {{ form.phone.errors }}
+                    {{ form.phone }}
+                    <br>
+                    <label for="{{ form.responsavel.id_for_label }}">{{ form.responsavel.label }}</label>
+                    {{ form.responsavel.errors }}
+                    {{ form.responsavel }}
+                    <br>
+                    <label for="{{ form.situacao.id_for_label }}">{{ form.situacao.label }}</label>
+                    {{ form.situacao.errors }}
+                    {{ form.situacao }}
+                    </div>
+
+                </div>
+                <p class="btn-row">
+                    <input type="submit" value="Editar Empresa"/>
+                </p>
+            </form>
+        </div>
+        <div class="card-footer small text-muted">Dados atualizados em 05 de julho de 2018</div>
+      </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+{% endblock %}

@@ -9,5 +9,7 @@ urlpatterns = [
     path('index', AudiBUN.core.views.home),
     path('', AudiBUN.core.views.home),
     path('cadastroEmpresa/', AudiBUN.empresas.views.cadastro),
+    path('editarEmpresa/', AudiBUN.empresas.views.editar),
+    path('editarEmpresa/<int:id_empresa>/', AudiBUN.empresas.views.editar_empresa),
     path('login/', AudiBUN.core.views.login),
 ]

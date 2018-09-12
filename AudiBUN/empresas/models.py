@@ -1,7 +1,7 @@
 from django.db import models
 
 class EmpresaModel(models.Model):
-    ref_cad = models.CharField(max_length=10)
+    ref_cad = models.CharField(max_length=20)
     name = models.CharField(max_length=100)
     atividade = models.CharField(max_length=50)
     endereco = models.CharField(max_length=100)

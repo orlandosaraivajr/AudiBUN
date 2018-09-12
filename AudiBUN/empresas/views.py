@@ -20,7 +20,7 @@ def create(request):
 
     form = EmpresaForm(request.POST)
     if not form.is_valid():
-        return render(request, "cadastro.html",
+        return render(request, 'cadastro.html',
                       {'form': form})
     else:
         EmpresaModel.objects.create(**form.cleaned_data)

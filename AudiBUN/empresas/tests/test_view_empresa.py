@@ -14,6 +14,19 @@ class cadastroEmpresaGet(TestCase):
     def test_200_template_home(self):
         self.assertEqual(200, self.resp.status_code)
 
+    def test_labels_html(self):
+        tags = (
+            ('Referência Cadastral', 1),
+            ('Quadra', 1),
+            ('Fone', 1),
+            ('Nome', 1),
+            ('Atividade', 1),
+            ('Responsável', 1)
+        )
+        for text, count in tags:
+            with self.subTest():
+                self.assertContains(self.resp, text, count)
+
     def test_html(self):
         tags = (
             ('<form', 1),

@@ -1,24 +1,35 @@
 from django import forms
+from django.forms import ModelForm
+
+from AudiBUN.empresas.models import EmpresaModel
 
 
-class EmpresaForm(forms.Form):
-    ref_cad = forms.CharField(label='Referência Cadastral',
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    name = forms.CharField(label='Nome da Empresa',
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    atividade = forms.CharField(label='Atividade',
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    endereco = forms.CharField(label='Endereço',
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    quadra = forms.CharField(label='Quadra',
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    lote = forms.CharField(label='Lote',
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(label='Email',
-        widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    phone = forms.CharField(label='Telefone',
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    responsavel = forms.CharField(label='Responsável',
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
-    situacao = forms.CharField(label='Situação',
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
+class EmpresaForm(ModelForm):
+    class Meta:
+        model = EmpresaModel
+        exclude = []
+
+        labels = {
+            'ref_cad': 'Referência Cadastral',
+            'name': 'Nome',
+            'atividade': 'Atividade',
+            'endereco': 'Endereço',
+            'quadra': 'Quadra',
+            'lote': 'Lote',
+            'email': 'E-mail',
+            'phone': 'Fone',
+            'responsavel': 'Responsável',
+            'situacao': 'Situação',
+        }
+        widgets = {
+            'ref_cad': forms.TextInput(attrs={'class': 'form-control'}),
+            'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'atividade': forms.TextInput(attrs={'class': 'form-control'}),
+            'endereco': forms.TextInput(attrs={'class': 'form-control'}),
+            'quadra': forms.TextInput(attrs={'class': 'form-control'}),
+            'lote': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control'}),
+            'responsavel': forms.TextInput(attrs={'class': 'form-control'}),
+            'situacao': forms.TextInput(attrs={'class': 'form-control'}),
+        }

@@ -1,5 +1,8 @@
 # AudiBUN
 
+[![Build Status](https://travis-ci.org/orlandosaraivajr/AudiBUN.svg?branch=master)](https://travis-ci.org/orlandosaraivajr/AudiBUN)
+[![Code Health](https://landscape.io/github/orlandosaraivajr/autobun/master/landscape.svg?style=flat)](https://landscape.io/github/orlandosaraivajr/autobun/master)
+
 Sistema "Auditoria Básica UNificada"
 
 ### Como desenvolver ?

@@ -1,14 +1,18 @@
-from django.db import models
+from django.db.models import Model
+from django.db.models import CharField
+from django.db.models import EmailField
+from django.db.models import DateTimeField
 
-class EmpresaModel(models.Model):
-    ref_cad = models.CharField(max_length=20)
-    name = models.CharField(max_length=100)
-    atividade = models.CharField(max_length=50)
-    endereco = models.CharField(max_length=100)
-    quadra = models.CharField(max_length=10)
-    lote = models.CharField(max_length=10)
-    email =  models.EmailField()
-    phone = models.CharField(max_length=20)
-    responsavel = models.CharField(max_length=100)
-    situacao = models.CharField(max_length=100)
-    created_at = models.DateTimeField(auto_now_add=True)
+
+class EmpresaModel(Model):
+    ref_cad = CharField(max_length=20)
+    name = CharField(max_length=100)
+    atividade = CharField(max_length=50)
+    endereco = CharField(max_length=100)
+    quadra = CharField(max_length=10)
+    lote = CharField(max_length=10)
+    email = EmailField()
+    phone = CharField(max_length=20)
+    responsavel = CharField(max_length=100)
+    situacao = CharField(max_length=100)
+    created_at = DateTimeField(auto_now_add=True)

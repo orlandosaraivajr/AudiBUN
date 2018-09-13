@@ -1,7 +1,7 @@
 from datetime import datetime
-
 from django.test import TestCase
 from AudiBUN.empresas.models import EmpresaModel
+
 
 class EmpresaModelTest(TestCase):
     def setUp(self):

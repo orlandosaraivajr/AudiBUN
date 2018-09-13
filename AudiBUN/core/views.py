@@ -9,5 +9,6 @@ def home(request):
                'empresas': EmpresaModel.objects.all()}
     return render(request, 'index.html', context)
 
+
 def login(request):
     return render(request, 'login.html')

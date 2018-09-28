@@ -51,6 +51,7 @@ class cadastroEmpresaPostValid(TestCase):
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
         data['name'] = "INDUSTRIA STARK LTDA"
+        data['categoria_atividade'] = "prestacao"
         data['atividade'] = "ATIVIDADE MILITAR"
         data['endereco'] = "RUA SHIELD, 199"
         data['quadra'] = "10"

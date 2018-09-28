@@ -26,20 +26,12 @@
                 <tr>
                   <th>{{ form.ref_cad.label }}</th>
                   <th>{{ form.name.label }}</th>
-                  <th>{{ form.endereco.label }}</th>
-                  <th>{{ form.responsavel.label }}</th>
-                  <th>{{ form.phone.label }}</th>
-                  <th>{{ form.situacao.label }}</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
                   <th>{{ form.ref_cad.label }}</th>
                   <th>{{ form.name.label }}</th>
-                  <th>{{ form.endereco.label }}</th>
-                  <th>{{ form.responsavel.label }}</th>
-                  <th>{{ form.phone.label }}</th>
-                  <th>{{ form.situacao.label }}</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -55,27 +47,6 @@
                         {{ empresa.name }}
                       </a>
                   </td>
-                  <td>
-                      <a href="/editarEmpresa/{{ empresa.pk }}">
-                        {{ empresa.endereco }}
-                      </a>
-                  </td>
-                  <td>
-                      <a href="/editarEmpresa/{{ empresa.pk }}">
-                        {{ empresa.responsavel }}
-                      </a>
-                  </td>
-                  <td>
-                      <a href="/editarEmpresa/{{ empresa.pk }}">
-                        {{ empresa.phone }}
-                      </a>
-                  </td>
-                  <td>
-                      <a href="/editarEmpresa/{{ empresa.pk }}">
-                        {{ empresa.situacao }}
-                      </a>
-                  </td>
-
                 </tr>
               {% endfor %}
               </tbody>

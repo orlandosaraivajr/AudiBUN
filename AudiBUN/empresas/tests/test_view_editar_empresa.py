@@ -32,6 +32,7 @@ class editarEmpresaGet(TestCase):
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
+            categoria_atividade="prestacao",
             atividade="ATIVIDADE MILITAR",
             endereco="RUA SHIELD, 199",
             quadra="10",
@@ -87,6 +88,7 @@ class editarEmpresaPost(TestCase):
         self.obj.save()
         d = {'ref_cad': '123.45',
              'name': 'Ozark',
+             'categoria_atividade': 'comercio',
              'atividade': 'lavagem de dinheiro',
              'endereco': 'Rua elo Horizonte',
              'quadra': '102',
@@ -112,6 +114,9 @@ class editarEmpresaPost(TestCase):
         q = EmpresaModel.objects.filter(pk=1)
         self.assertEqual(q[0].email, 'zeninguem@terra.mx')
 
+    def test_data_changed_categoria_atividade(self):
+        q = EmpresaModel.objects.filter(pk=1)
+        self.assertEqual(q[0].categoria_atividade, 'comercio')
 
 class editarEmpresaPostFail(TestCase):
     def setUp(self):
@@ -146,10 +151,14 @@ class editarEmpresaPostFail(TestCase):
     def test_200_template_empresa(self):
         self.assertEqual(200, self.resp.status_code)
 
-    def test_data_changed_name(self):
+    def test_data_not_changed_name(self):
         q = EmpresaModel.objects.filter(pk=1)
         self.assertEqual(q[0].name, 'INDUSTRIA STARK LTDA')
 
-    def test_data_changed_email(self):
+    def test_data_not_changed_email(self):
         q = EmpresaModel.objects.filter(pk=1)
         self.assertEqual(q[0].email, 'tony@stark.com')
+
+    def test_data_not_changed_categoria_atividade(self):
+        q = EmpresaModel.objects.filter(pk=1)
+        self.assertEqual(q[0].categoria_atividade, 'prestacao')

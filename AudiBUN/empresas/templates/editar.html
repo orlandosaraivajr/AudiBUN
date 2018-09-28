@@ -54,6 +54,10 @@
                         {{ form.name.errors }}
                         {{ form.name }}
                     <br>
+                    <label for="{{ form.categoria_atividade.id_for_label }}">{{ form.categoria_atividade.label }}</label>
+                    {{ form.categoria_atividade.errors }}
+                    {{ form.categoria_atividade}}
+                    <br>
                     <label for="{{ form.atividade.id_for_label }}">{{ form.atividade.label }}</label>
                     {{ form.atividade.errors }}
                     {{ form.atividade }}

@@ -46,6 +46,7 @@ class cadastroEmpresaGet(TestCase):
         form = self.resp.context['form']
         self.assertIsInstance(form, EmpresaForm)
 
+
 class cadastroEmpresaPostValid(TestCase):
     def setUp(self):
         data = {}
@@ -68,6 +69,7 @@ class cadastroEmpresaPostValid(TestCase):
 
     def test_save_Empresa(self):
         self.assertTrue(EmpresaModel.objects.exists())
+
 
 class cadastroEmpresaPostInvalid(TestCase):
     def setUp(self):

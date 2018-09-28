@@ -71,6 +71,7 @@ class editarEmpresaGetNoData(TestCase):
     def test_404_template_empresa(self):
         self.assertEqual(404, self.resp.status_code)
 
+
 class editarEmpresaPost(TestCase):
     def setUp(self):
         self.obj = EmpresaModel(
@@ -96,8 +97,7 @@ class editarEmpresaPost(TestCase):
              'email': 'zeninguem@terra.mx',
              'phone': '055-19-3541-0000',
              'responsavel': 'desconhecido',
-             'situacao': 'Ativa'
-        }
+             'situacao': 'Ativa'}
         self.resp = self.client.post('/editarEmpresa/1/', d)
 
     def test_template_home(self):
@@ -141,8 +141,7 @@ class editarEmpresaPostFail(TestCase):
              'email': 'zeninguem@terra.mx',
              'phone': '055-19-3541-0000',
              'responsavel': 'desconhecido',
-             'situacao': 'Ativa'
-        }
+             'situacao': 'Ativa'}
         self.resp = self.client.post('/editarEmpresa/1/', d)
 
     def test_template_home(self):

@@ -20,6 +20,7 @@ class IndexTest(TestCase):
         form = self.resp.context['form']
         self.assertIsInstance(form, EmpresaForm)
 
+
 class LoginTest(TestCase):
     def setUp(self):
         self.resp = self.client.get('/login/')

@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, DateTimeField, EmailField
+from django.db.models import Model, CharField, DateTimeField, EmailField, TextField
 
 ATIVIDADE_CHOICES = (
     ('prestacao','PRESTAÇÃO DE SERVIÇOS'),
@@ -6,18 +6,31 @@ ATIVIDADE_CHOICES = (
     ('industria','INDÚSTRIA'),
 )
 
+DISTRITO_CHOICES = (
+    ('1','DISTRITO 1'),
+    ('2', 'DISTRITO 2'),
+    ('3', 'DISTRITO 3'),
+    ('4', 'DISTRITO 4'),
+    ('5', 'DISTRITO 5'),
+    ('0','OUTROS'),
+)
+
 class EmpresaModel(Model):
     ref_cad = CharField(max_length=20)
     name = CharField(max_length=100)
     categoria_atividade = CharField(max_length=10, \
             choices=ATIVIDADE_CHOICES, default='prestacao')
-    atividade = CharField(max_length=50)
-    endereco = CharField(max_length=100)
-    quadra = CharField(max_length=10)
-    lote = CharField(max_length=10)
-    email = EmailField()
-    phone = CharField(max_length=20)
-    responsavel = CharField(max_length=100)
+    atividade = CharField(default='NÃO DEFINIDA', blank=False, max_length=50)
+    endereco = CharField(blank=True, max_length=100)
+    quadra = CharField(blank=False, max_length=10)
+    lote = CharField(blank=False, max_length=10)
+    categoria_distrito = CharField(max_length=2, \
+                                    choices=DISTRITO_CHOICES, default='0')
+    bairro = CharField(blank=True, max_length=100)
+    email = EmailField(blank=True)
+    phone = CharField(max_length=20, blank=True)
+    responsavel = CharField(blank=True, max_length=100)
     situacao = CharField(max_length=100)
+    observacao = TextField(default='NENHUMA OBSERVAÇÃO', blank=True)
     created_at = DateTimeField(auto_now_add=True)
 

@@ -15,7 +15,8 @@ class EmpresaModelTest(TestCase):
             email="tony@stark.com",
             phone="055-19-3541-0000",
             responsavel="Anotny Stark",
-            situacao="Ativa"
+            situacao="Ativa",
+            observacao="",
         )
         self.obj.save()
 

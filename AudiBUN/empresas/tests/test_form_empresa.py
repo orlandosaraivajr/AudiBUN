@@ -10,6 +10,6 @@ class EmpresaFormTest(TestCase):
     def test_form_has_fields(self):
         """Form must have 4 fields """
         expected = ['ref_cad', 'name','categoria_atividade', 'atividade']
-        expected += ['endereco','quadra', 'lote', 'email', 'phone']
-        expected += ['responsavel', 'situacao']
+        expected += ['endereco','quadra','lote','categoria_distrito','bairro']
+        expected += ['email', 'phone', 'responsavel', 'situacao', 'observacao']
         self.assertSequenceEqual(expected, list(self.form.fields))

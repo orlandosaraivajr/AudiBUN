@@ -26,7 +26,7 @@ def create(request):
         EmpresaModel.objects.create(**form.cleaned_data)
         # Sucess feedback
         messages.success(request, 'Inscrição Realizada com Sucesso !')
-        return HttpResponseRedirect('/cadastroEmpresa/')
+        return HttpResponseRedirect('/')
 
 
 def editar(request):

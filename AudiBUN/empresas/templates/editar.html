@@ -66,6 +66,14 @@
                     {{ form.endereco.errors }}
                     {{ form.endereco }}
                     <br>
+                    <label for="{{ form.categoria_distrito.id_for_label }}">{{ form.categoria_distrito.label }}</label>
+                    {{ form.categoria_distrito.errors }}
+                    {{ form.categoria_distrito}}
+                    <br>
+                    <label for="{{ form.bairro.id_for_label }}">{{ form.bairro.label }}</label>
+                    {{ form.bairro.errors }}
+                    {{ form.bairro }}
+                    <br>
                     <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
                     {{ form.email.errors }}
                     {{ form.email }}
@@ -82,10 +90,15 @@
                     {{ form.situacao.errors }}
                     {{ form.situacao }}
                     </div>
+                    <label for="{{ form.observacao.id_for_label }}">{{ form.observacao.label }}</label>
+                    {{ form.observacao.errors }}
+                    {{ form.observacao }}
+                    </div>
+
 
                 </div>
                 <p class="btn-row">
-                    <input type="submit" value="Editar Empresa"/>
+                    <input type="submit" value="Salvar informações"/>
                 </p>
             </form>
         </div>

@@ -42,6 +42,25 @@ class EmpresaForm(ModelForm):
         }
 
     def clean_name(self):
-        name = self.cleaned_data['name']
-        name = name.upper()
-        return name
+        return  self.cleaned_data['name'].upper()
+
+    def clean_quadra(self):
+        return self.cleaned_data['quadra'].upper()
+
+    def clean_atividade(self):
+        return self.cleaned_data['atividade'].upper()
+
+    def clean_endereco(self):
+        return self.cleaned_data['endereco'].upper()
+
+    def clean_lote(self):
+        return self.cleaned_data['lote'].upper()
+
+    def clean_responsavel(self):
+        return self.cleaned_data['responsavel'].upper()
+
+    def clean_situacao(self):
+        return self.cleaned_data['situacao'].upper()
+
+    def clean_observacao(self):
+        return self.cleaned_data['observacao'].upper()

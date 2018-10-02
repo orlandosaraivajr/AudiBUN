@@ -9,7 +9,7 @@
         <li class="breadcrumb-item">
           <a href="/">AudiBun</a>
         </li>
-        <li class="breadcrumb-item active">Cadastro de Empresas</li>
+        <li class="breadcrumb-item active">Visualizar cadastro da Empresa</li>
       </ol>
 
 {% include "menu.html" %}
@@ -17,17 +17,8 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Cadastro de Empresas</div>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert success">
-                        <p>{{ message }} </p>
-                    </div>
-                {% endfor %}
-            {% endif %}
+          <i class="fa fa-table"></i> Visualizar cadastro da Empresa</div>
         <div class="card-body">
-            <form action="." novalidate method="POST">
-                {% csrf_token %}
                 <div class="form-group">
 
                     <div class="container">
@@ -94,11 +85,9 @@
                     {{ form.observacao.errors }}
                     {{ form.observacao }}
                     </div>
+
+
                 </div>
-                <p class="btn-row">
-                    <input type="submit" value="Cadastrar Empresa"/>
-                </p>
-            </form>
         </div>
         {% include "mensagem_rodape.html" %}
       </div>

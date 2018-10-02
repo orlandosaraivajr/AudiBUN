@@ -54,3 +54,12 @@ def editar_empresa(request, id_empresa):
         form = EmpresaForm(instance=obj)
         context = {'form': form}
         return render(request, "editar.html", context)
+
+
+def visualizar_empresa(request, id_empresa):
+    id = id_empresa
+    obj = get_object_or_404(EmpresaModel, pk=id)
+    form = EmpresaForm(instance=obj)
+    form.read_only()
+    context = {'form': form}
+    return render(request, "visualizar.html", context)

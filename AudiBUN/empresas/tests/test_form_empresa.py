@@ -59,3 +59,17 @@ class CleanFormTest(TestCase):
 
     def test_observacao_upper(self):
         self.assertEqual('INSTALAÇÃO EM NOVEMBRO DE 2017', self.form.cleaned_data['observacao'])
+
+    def test_method_read_only_true(self):
+        self.form.read_only()
+        fields = list(self.form.fields)
+        for field in fields:
+            with self.subTest():
+                self.assertEqual(self.form.fields[field].widget.attrs['readonly'], True)
+
+    def test_method_read_only_false(self):
+        self.form.read_only(False)
+        fields = list(self.form.fields)
+        for field in fields:
+            with self.subTest():
+                self.assertEqual(self.form.fields[field].widget.attrs['readonly'], False)

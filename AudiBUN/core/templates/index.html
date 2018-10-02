@@ -37,8 +37,16 @@
               <tbody>
               {% for empresa in empresas %}
                 <tr>
-                  <td>{{ empresa.ref_cad }}</td>
-                  <td>{{ empresa.name }}</td>
+                <td>
+                      <a href="/cadastroEmpresa/{{ empresa.pk }}">
+                        {{ empresa.ref_cad }}
+                      </a>
+                  </td>
+                  <td>
+                      <a href="/cadastroEmpresa/{{ empresa.pk }}">
+                        {{ empresa.name }}
+                      </a>
+                  </td>
                 </tr>
               {% endfor %}
               </tbody>
@@ -46,7 +54,7 @@
           </div>
         {% endif %}
         </div>
-        <div class="card-footer small text-muted">Atualizado em 13 de setembro de 2018</div>
+        {% include "mensagem_rodape.html" %}
       </div>
     </div>
     <!-- /.container-fluid-->

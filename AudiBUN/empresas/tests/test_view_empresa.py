@@ -30,8 +30,8 @@ class cadastroEmpresaGet(TestCase):
     def test_html(self):
         tags = (
             ('<form', 1),
-            ('<input', 12),
-            ('type="text"', 9),
+            ('<input', 13),
+            ('type="text"', 10),
             ('type="email"', 1),
             ('type="submit"', 1)
         )
@@ -52,14 +52,17 @@ class cadastroEmpresaPostValid(TestCase):
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
         data['name'] = "INDUSTRIA STARK LTDA"
+        data['categoria_atividade'] = "prestacao"
         data['atividade'] = "ATIVIDADE MILITAR"
         data['endereco'] = "RUA SHIELD, 199"
         data['quadra'] = "10"
         data['lote'] = "2"
+        data['categoria_distrito'] = "0"
         data['email'] = "tony@stark.com"
         data['phone'] = "055-19-3541-0000"
         data['responsavel'] = "Anotny Stark"
         data['situacao'] = "Ativa"
+        data['observacao'] = "1"
         self.resp = self.client.post('/cadastroEmpresa/', data)
 
     def test_post(self):

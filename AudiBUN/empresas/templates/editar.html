@@ -24,6 +24,11 @@
                         <p>{{ message }} </p>
                     </div>
                 {% endfor %}
+                {% for message in messages.errors %}
+                    <div class="alert error">
+                        <p>{{ message }} </p>
+                    </div>
+                {% endfor %}
             {% endif %}
         <div class="card-body">
             <form action="." novalidate method="POST">
@@ -34,64 +39,50 @@
                       <div class="row">
                         <div class="col-sm">
                             <label for="{{ form.ref_cad.id_for_label }}">{{ form.ref_cad.label }}</label>
-                            {{ form.ref_cad.errors }}
                             {{ form.ref_cad }}
                         </div>
                         <div class="col-sm">
                             <label for="{{ form.quadra.id_for_label }}">{{ form.quadra.label }}</label>
-                            {{ form.quadra.errors }}
                             {{ form.quadra }}
 
                         </div>
                         <div class="col-sm">
                             <label for="{{ form.lote.id_for_label }}">{{ form.lote.label }}</label>
-                            {{ form.lote.errors }}
                             {{ form.lote }}
                         </div>
                       </div>
                     <br>
                     <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
-                        {{ form.name.errors }}
                         {{ form.name }}
                     <br>
                     <label for="{{ form.categoria_atividade.id_for_label }}">{{ form.categoria_atividade.label }}</label>
-                    {{ form.categoria_atividade.errors }}
                     {{ form.categoria_atividade}}
                     <br>
                     <label for="{{ form.atividade.id_for_label }}">{{ form.atividade.label }}</label>
-                    {{ form.atividade.errors }}
                     {{ form.atividade }}
                     <br>
                     <label for="{{ form.endereco.id_for_label }}">{{ form.endereco.label }}</label>
-                    {{ form.endereco.errors }}
                     {{ form.endereco }}
                     <br>
                     <label for="{{ form.categoria_distrito.id_for_label }}">{{ form.categoria_distrito.label }}</label>
-                    {{ form.categoria_distrito.errors }}
                     {{ form.categoria_distrito}}
                     <br>
                     <label for="{{ form.bairro.id_for_label }}">{{ form.bairro.label }}</label>
-                    {{ form.bairro.errors }}
                     {{ form.bairro }}
                     <br>
                     <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
-                    {{ form.email.errors }}
                     {{ form.email }}
                     <br>
                     <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
-                    {{ form.phone.errors }}
                     {{ form.phone }}
                     <br>
                     <label for="{{ form.responsavel.id_for_label }}">{{ form.responsavel.label }}</label>
-                    {{ form.responsavel.errors }}
                     {{ form.responsavel }}
                     <br>
                     <label for="{{ form.situacao.id_for_label }}">{{ form.situacao.label }}</label>
-                    {{ form.situacao.errors }}
                     {{ form.situacao }}
                     </div>
                     <label for="{{ form.observacao.id_for_label }}">{{ form.observacao.label }}</label>
-                    {{ form.observacao.errors }}
                     {{ form.observacao }}
                     </div>
 

@@ -73,3 +73,46 @@ class CleanFormTest(TestCase):
         for field in fields:
             with self.subTest():
                 self.assertEqual(self.form.fields[field].widget.attrs['readonly'], False)
+
+
+class Test_Field_Ref_Cad_Test(TestCase):
+    def setUp(self):
+        self.data = {}
+        self.data['ref_cad'] = "12.5.12.01.001"
+        self.data['name'] = "xxx"
+        self.data['categoria_atividade'] = "prestacao"
+        self.data['atividade'] = "xxx"
+        self.data['endereco'] = "xxx"
+        self.data['quadra'] = "10a"
+        self.data['lote'] = "2a"
+        self.data['categoria_distrito'] = "0"
+        self.data['email'] = ""
+        self.data['phone'] = ""
+        self.data['responsavel'] = ""
+        self.data['situacao'] = "Ativa"
+        self.data['observacao'] = ""
+        self.form = EmpresaForm(self.data)
+        self.form.is_valid()
+
+    def test_valid_form(self):
+        self.assertEqual(True, self.form.is_valid())
+
+    def test_change_ref_cad_fail_quadricula_subfield(self):
+        self.data['ref_cad'] = "A.5.12.01.001"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
+    def test_change_ref_cad_fail_zona_subfield(self):
+        self.data['ref_cad'] = "1.B.12.01.001"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
+    def test_change_ref_cad_fail_setor_subfield(self):
+        self.data['ref_cad'] = "1.12.C.01.001"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
+    def test_change_ref_cad_fail_lote_subfield(self):
+        self.data['ref_cad'] = "1.12.12.01.X"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())

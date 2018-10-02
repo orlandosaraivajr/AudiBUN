@@ -88,7 +88,7 @@ class editarEmpresa_accept_blank_Post(TestCase):
             observacao=""
         )
         self.obj.save()
-        d = {'ref_cad': '123.45',
+        d = {'ref_cad': '12.5.12.01.002',
              'name': 'Ozark',
              'categoria_atividade': 'comercio',
              'atividade': 'lavagem de dinheiro',
@@ -132,7 +132,7 @@ class editarEmpresaPost(TestCase):
             observacao="teste"
         )
         self.obj.save()
-        d = {'ref_cad': '123.45',
+        d = {'ref_cad': '12.5.12.01.002',
              'name': 'Ozark',
              'categoria_atividade': 'comercio',
              'atividade': 'lavagem de dinheiro',
@@ -180,7 +180,7 @@ class editarEmpresaPostFail(TestCase):
             situacao="Ativa"
         )
         self.obj.save()
-        d = {'ref_cad': '123.45',
+        d = {'ref_cad': '12.5.12.01.002',
              'atividade': 'lavagem de dinheiro',
              'endereco': 'Rua elo Horizonte',
              'quadra': '102',
@@ -192,7 +192,7 @@ class editarEmpresaPostFail(TestCase):
         self.resp = self.client.post('/editarEmpresa/1/', d)
 
     def test_template_home(self):
-        self.assertTemplateUsed(self.resp, 'empresas.html')
+        self.assertTemplateUsed(self.resp, 'editar.html')
 
     def test_200_template_empresa(self):
         self.assertEqual(200, self.resp.status_code)

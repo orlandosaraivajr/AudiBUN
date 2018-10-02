@@ -40,15 +40,20 @@ def editar_empresa(request, id_empresa):
     if request.method == 'POST':
         form = EmpresaForm(request.POST)
         if not form.is_valid():
-            context = {'form': EmpresaForm(),
-                       'empresas': EmpresaModel.objects.all()}
-            return render(request, 'empresas.html', context)
+            erros = ''
+            for e in form.errors:
+                erros += form.errors[e]
+            # Fail feedback
+            messages.error(request, erros)
+            context = {'form': form}
         else:
             EmpresaModel.objects.filter(pk=id).update(**form.cleaned_data)
             # Sucess feedback
             messages.success(request, 'Atualização Realizada com Sucesso !')
+            obj = get_object_or_404(EmpresaModel, pk=id)
+            form = EmpresaForm(instance=obj)
             context = {'form': form}
-            return render(request, "editar.html", context)
+        return render(request, "editar.html", context)
     else:
         obj = get_object_or_404(EmpresaModel, pk=id)
         form = EmpresaForm(instance=obj)

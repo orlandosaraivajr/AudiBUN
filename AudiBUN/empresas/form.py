@@ -1,5 +1,7 @@
 from django import forms
+from django.core.exceptions import ValidationError
 from django.forms import ModelForm
+from django.forms.utils import ErrorList
 
 from AudiBUN.empresas.models import EmpresaModel, ATIVIDADE_CHOICES, DISTRITO_CHOICES
 
@@ -40,6 +42,32 @@ class EmpresaForm(ModelForm):
             'situacao': forms.TextInput(attrs={'class': 'form-control'}),
             'observacao': forms.Textarea(attrs={'class': 'form-control'}),
         }
+        error = {
+            'quadra': 'Campo Quadra obrigatório'
+        }
+
+    def clean_ref_cad(self):
+        referencia_cadastral = self.cleaned_data['ref_cad']
+        lista_ref_cad = referencia_cadastral.split('.')
+        if len(lista_ref_cad) < 5 or len(lista_ref_cad) > 6:
+            raise ValidationError('Formato incorreto do campo Referência Cadastral')
+        try:
+            int(lista_ref_cad[0])
+        except:
+            raise ValidationError('Quadricula precisa ser um número. Erro em Referência Cadastral')
+        try:
+            int(lista_ref_cad[1])
+        except:
+            raise ValidationError('Zona precisa ser um número. Erro em Referência Cadastral')
+        try:
+            int(lista_ref_cad[2])
+        except:
+            raise ValidationError('Setor precisa ser um número. Erro em Referência Cadastral')
+        try:
+            int(lista_ref_cad[4])
+        except:
+            raise ValidationError('Lote precisa ser um número. Erro em Referência Cadastral')
+        return self.cleaned_data['ref_cad'].upper()
 
     def clean_name(self):
         return  self.cleaned_data['name'].upper()
@@ -74,3 +102,8 @@ class EmpresaForm(ModelForm):
         else:
             for field in fields:
                 self.fields[field].widget.attrs['readonly'] = False
+
+    def clean(self):
+        self.cleaned_data = super().clean()
+
+        return self.cleaned_data

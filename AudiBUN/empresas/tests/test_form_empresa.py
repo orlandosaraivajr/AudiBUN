@@ -97,6 +97,26 @@ class Test_Field_Ref_Cad_Test(TestCase):
     def test_valid_form(self):
         self.assertEqual(True, self.form.is_valid())
 
+    def test_change_ref_cad_invalid_format_1(self):
+        self.data['ref_cad'] = "1.1.1.1"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
+    def test_change_ref_cad_valid_format_1(self):
+        self.data['ref_cad'] = "1.1.1.1.1"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(True, self.form.is_valid())
+
+    def test_change_ref_cad_valid_format_2(self):
+        self.data['ref_cad'] = "1.1.1.1.1.1"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(True, self.form.is_valid())
+
+    def test_change_ref_cad_invalid_format_2(self):
+        self.data['ref_cad'] = "1.1.1.1.1.1.1"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
     def test_change_ref_cad_fail_quadricula_subfield(self):
         self.data['ref_cad'] = "A.5.12.01.001"
         self.form = EmpresaForm(self.data)

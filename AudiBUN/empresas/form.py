@@ -1,7 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-from django.forms.utils import ErrorList
 
 from AudiBUN.empresas.models import EmpresaModel, ATIVIDADE_CHOICES, DISTRITO_CHOICES
 
@@ -42,8 +41,27 @@ class EmpresaForm(ModelForm):
             'situacao': forms.TextInput(attrs={'class': 'form-control'}),
             'observacao': forms.Textarea(attrs={'class': 'form-control'}),
         }
-        error = {
-            'quadra': 'Campo Quadra obrigatório'
+        help_texts = {
+            'ref_cad': ('Referência Cadastral.'),
+            'name': ('Nome da Empresa.'),
+        }
+        error_messages = {
+            'ref_cad': {
+                'required': ("Referência cadastral não pode ser em branco."),
+            },
+            'quadra': {
+                'required': ("Quadra não pode ser em branco."),
+            },
+            'lote': {
+                'required': ("Lote não pode ser em branco."),
+            },
+            'name': {
+                'max_length': ("Nome da empresa ultrapassa limite máximo de caracteres."),
+                'required': ("Nome da empresa não pode ser em branco."),
+            },
+            'situacao': {
+                'required': ("Situação da empresa não pode ser em branco."),
+            },
         }
 
     def clean_ref_cad(self):

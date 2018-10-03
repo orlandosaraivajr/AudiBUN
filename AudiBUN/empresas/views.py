@@ -25,7 +25,7 @@ def create(request):
     else:
         EmpresaModel.objects.create(**form.cleaned_data)
         # Sucess feedback
-        messages.success(request, 'Inscrição Realizada com Sucesso !')
+#        messages.success(request, 'Inscrição Realizada com Sucesso !')
         return HttpResponseRedirect('/')
 
 

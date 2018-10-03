@@ -33,8 +33,14 @@ class EmpresaForm(ModelForm):
             'endereco': forms.TextInput(attrs={'class': 'form-control'}),
             'quadra': forms.TextInput(attrs={'class': 'form-control'}),
             'lote': forms.TextInput(attrs={'class': 'form-control'}),
-            'categoria_distrito': forms.Select(choices=DISTRITO_CHOICES, attrs={'class': 'form-control'}),
-            'bairro': forms.TextInput(attrs={'class': 'form-control'}),
+            'categoria_distrito': forms.Select(choices=DISTRITO_CHOICES, \
+                                               attrs={'class': 'form-control',
+                                                      'onChange': 'change_click_categoria_distrito()',
+                                                      }),
+
+            'bairro': forms.TextInput(attrs={'class': 'form-control',\
+                                            'onClick': 'change_distrito_click_bairro()',
+                                                      }),
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'responsavel': forms.TextInput(attrs={'class': 'form-control'}),

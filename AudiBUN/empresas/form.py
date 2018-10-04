@@ -72,6 +72,24 @@ class EmpresaForm(ModelForm):
             },
         }
 
+    def clean_cnpj(self):
+        '''Validate CNPJ field in the format: 00.000.000/0000-00 '''
+        cnpj = self.cleaned_data['cnpj']
+        sub1, sub2 = cnpj.split('/')
+        valores = sub1.split('.')
+        for v in valores:
+            try:
+                int(v)
+            except:
+                raise ValidationError('CNPJ pode conter apenas números no formato: 00.000.000/0000-00')
+        valores = sub2.split('-')
+        for v in valores:
+            try:
+                int(v)
+            except:
+                raise ValidationError('CNPJ pode conter apenas números no formato: 00.000.000/0000-00')
+        return self.cleaned_data['cnpj']
+
     def clean_ref_cad(self):
         referencia_cadastral = self.cleaned_data['ref_cad']
         lista_ref_cad = referencia_cadastral.split('.')

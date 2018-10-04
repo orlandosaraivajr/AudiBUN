@@ -7,11 +7,12 @@ ATIVIDADE_CHOICES = (
 )
 
 DISTRITO_CHOICES = (
-    ('1','DISTRITO 1'),
-    ('2', 'DISTRITO 2'),
-    ('3', 'DISTRITO 3'),
-    ('4', 'DISTRITO 4'),
-    ('5', 'DISTRITO 5'),
+    ('1','DISTRITO I'),
+    ('2', 'DISTRITO II'),
+    ('3', 'DISTRITO III'),
+    ('4', 'DISTRITO IV'),
+    ('5', 'DISTRITO V'),
+    ('5', 'DISTRITO VI'),
     ('0','OUTROS'),
 )
 

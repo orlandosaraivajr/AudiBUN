@@ -19,7 +19,7 @@ class cadastroEmpresaGet(TestCase):
             ('Referência Cadastral', 1),
             ('Quadra', 1),
             ('Fone', 1),
-            ('Nome', 1),
+            ('Empresa', 1),
             ('Atividade', 1),
             ('Responsável', 1)
         )

@@ -12,7 +12,7 @@ class EmpresaForm(ModelForm):
 
         labels = {
             'ref_cad': 'Referência Cadastral',
-            'name': 'Nome',
+            'name': 'Empresa',
             'categoria_atividade': 'Atividade',
             'atividade': 'Descrição da atividade',
             'endereco': 'Endereço',

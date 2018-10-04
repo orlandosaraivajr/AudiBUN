@@ -32,6 +32,7 @@ class editarEmpresaGet(TestCase):
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
+            cnpj="62.823.257/0001-09",
             categoria_atividade="prestacao",
             atividade="ATIVIDADE MILITAR",
             endereco="RUA SHIELD, 199",
@@ -77,6 +78,7 @@ class editarEmpresa_accept_blank_Post(TestCase):
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
             atividade="ATIVIDADE MILITAR",
+            cnpj="62.823.257/0001-09",
             endereco="",
             quadra="10",
             lote="2",
@@ -92,6 +94,7 @@ class editarEmpresa_accept_blank_Post(TestCase):
              'name': 'Ozark',
              'categoria_atividade': 'comercio',
              'atividade': 'lavagem de dinheiro',
+             'cnpj': '62.823.257/0001-09',
              'endereco': 'Rua Belo Horizonte',
              'quadra': '102',
              'lote': '20',
@@ -120,6 +123,7 @@ class editarEmpresaPost(TestCase):
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
+            cnpj="62.823.257/0001-09",
             atividade="ATIVIDADE MILITAR",
             endereco="RUA SHIELD, 199",
             quadra="10",
@@ -134,6 +138,7 @@ class editarEmpresaPost(TestCase):
         self.obj.save()
         d = {'ref_cad': '12.5.12.01.002',
              'name': 'Ozark',
+             'cnpj': '62.823.257/0001-09',
              'categoria_atividade': 'comercio',
              'atividade': 'lavagem de dinheiro',
              'endereco': 'Rua elo Horizonte',

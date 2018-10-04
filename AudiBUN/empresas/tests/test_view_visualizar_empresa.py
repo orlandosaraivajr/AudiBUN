@@ -12,7 +12,7 @@ class visualizarEmpresaGetFail(TestCase):
         self.assertEqual(301, self.resp.status_code)
 
 
-class visualizarEmpresaGetGet(TestCase):
+class visualizarEmpresaGet(TestCase):
     def setUp(self):
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
@@ -39,7 +39,7 @@ class visualizarEmpresaGetGet(TestCase):
     def test_html(self):
         tags = (
             ('Visualizar cadastro da Empresa', 2),
-            ('readonly', 14),
+            ('readonly', 15),
 
         )
         for text, count in tags:

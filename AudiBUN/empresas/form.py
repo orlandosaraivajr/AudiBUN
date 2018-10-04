@@ -13,6 +13,7 @@ class EmpresaForm(ModelForm):
         labels = {
             'ref_cad': 'Referência Cadastral',
             'name': 'Empresa',
+            'cnpj': 'CNPJ',
             'categoria_atividade': 'Atividade',
             'atividade': 'Descrição da atividade',
             'endereco': 'Endereço',
@@ -28,6 +29,7 @@ class EmpresaForm(ModelForm):
         widgets = {
             'ref_cad': forms.TextInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'cnpj': forms.TextInput(attrs={'class': 'form-control'}),
             'categoria_atividade': forms.Select(choices=ATIVIDADE_CHOICES,attrs={'class': 'form-control'}),
             'atividade': forms.TextInput(attrs={'class': 'form-control'}),
             'endereco': forms.TextInput(attrs={'class': 'form-control'}),

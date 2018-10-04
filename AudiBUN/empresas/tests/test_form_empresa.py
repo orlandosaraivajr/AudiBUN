@@ -8,7 +8,7 @@ class EmpresaFormTest(TestCase):
         self.form = EmpresaForm()
 
     def test_form_has_fields(self):
-        expected = ['ref_cad', 'name','categoria_atividade', 'atividade']
+        expected = ['ref_cad', 'name','cnpj','categoria_atividade', 'atividade']
         expected += ['endereco','quadra','lote','categoria_distrito','bairro']
         expected += ['email', 'phone', 'responsavel', 'situacao', 'observacao']
         self.assertSequenceEqual(expected, list(self.form.fields))
@@ -19,6 +19,7 @@ class CleanFormTest(TestCase):
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
         data['name'] = "Industria Stark"
+        data['cnpj'] = "62.823.257/0001-09"
         data['categoria_atividade'] = "prestacao"
         data['atividade'] = "aTIVIdAde Militar"
         data['endereco'] = "RUA Shield, 199"
@@ -80,6 +81,7 @@ class Test_Field_Ref_Cad_Test(TestCase):
         self.data = {}
         self.data['ref_cad'] = "12.5.12.01.001"
         self.data['name'] = "xxx"
+        self.data['cnpj'] = '62.823.257/0001-09'
         self.data['categoria_atividade'] = "prestacao"
         self.data['atividade'] = "xxx"
         self.data['endereco'] = "xxx"

@@ -20,6 +20,7 @@ class cadastroEmpresaGet(TestCase):
             ('Quadra', 1),
             ('Fone', 1),
             ('Empresa', 13),
+            ('CNPJ', 1),
             ('Atividade', 1),
             ('Responsável', 1)
         )
@@ -30,8 +31,8 @@ class cadastroEmpresaGet(TestCase):
     def test_html(self):
         tags = (
             ('<form', 1),
-            ('<input', 13),
-            ('type="text"', 10),
+            ('<input', 14),
+            ('type="text"', 11),
             ('type="email"', 1),
             ('type="submit"', 1)
         )
@@ -52,6 +53,7 @@ class cadastroEmpresaPostValid(TestCase):
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
         data['name'] = "INDUSTRIA STARK LTDA"
+        data['cnpj'] = "62.823.257/0001-09"
         data['categoria_atividade'] = "prestacao"
         data['atividade'] = "ATIVIDADE MILITAR"
         data['endereco'] = "RUA SHIELD, 199"

@@ -1,12 +1,12 @@
 from django.test import TestCase
-
+from django.shortcuts import resolve_url as r
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
 
 
 class cadastroEmpresaGet(TestCase):
     def setUp(self):
-        self.resp = self.client.get('/cadastroEmpresa/')
+        self.resp = self.client.get(r('empresas:cadastrar'))
 
     def test_template_home(self):
         self.assertTemplateUsed(self.resp, 'cadastro.html')
@@ -19,7 +19,7 @@ class cadastroEmpresaGet(TestCase):
             ('Referência Cadastral', 1),
             ('Quadra', 1),
             ('Fone', 1),
-            ('Empresa', 13),
+            ('Empresa', 11),
             ('CNPJ', 1),
             ('Atividade', 1),
             ('Responsável', 1)
@@ -65,7 +65,7 @@ class cadastroEmpresaPostValid(TestCase):
         data['responsavel'] = "Anotny Stark"
         data['situacao'] = "Ativa"
         data['observacao'] = "1"
-        self.resp = self.client.post('/cadastroEmpresa/', data)
+        self.resp = self.client.post(r('empresas:cadastrar'), data)
 
     def test_post(self):
         """Valid POST should redirect to /inscricao/"""
@@ -84,7 +84,7 @@ class cadastroEmpresaPostInvalid(TestCase):
         data['endereco'] = "RUA SHIELD, 199"
         data['quadra'] = "10"
         data['lote'] = "2"
-        self.resp = self.client.post('/cadastroEmpresa/', data)
+        self.resp = self.client.post(r('empresas:cadastrar'), data)
 
     def test_post(self):
         """Invalid POST should not redirect to /inscricao/"""

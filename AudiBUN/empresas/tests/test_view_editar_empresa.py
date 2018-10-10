@@ -1,12 +1,12 @@
 from django.test import TestCase
-
+from django.shortcuts import resolve_url as r
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
 
 
 class editarEmpresasGet(TestCase):
     def setUp(self):
-        self.resp = self.client.get('/editarEmpresa/')
+        self.resp = self.client.get(r('empresas:listar_editar'))
 
     def test_template_home(self):
         self.assertTemplateUsed(self.resp, 'empresas.html')
@@ -32,6 +32,7 @@ class editarEmpresaGet(TestCase):
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
+            cnpj="62.823.257/0001-09",
             categoria_atividade="prestacao",
             atividade="ATIVIDADE MILITAR",
             endereco="RUA SHIELD, 199",
@@ -43,7 +44,7 @@ class editarEmpresaGet(TestCase):
             situacao="Ativa"
         )
         self.obj.save()
-        self.resp = self.client.get('/editarEmpresa/1/')
+        self.resp = self.client.get(r('empresas:editar', self.obj.pk))
 
     def test_template_home(self):
         self.assertTemplateUsed(self.resp, 'editar.html')
@@ -66,7 +67,9 @@ class editarEmpresaGet(TestCase):
 
 class editarEmpresaGetNoData(TestCase):
     def setUp(self):
-        self.resp = self.client.get('/editarEmpresa/1/')
+        data = {'id_empresa':'1'}
+        self.resp = self.client.get(r('empresas:editar', 1))
+        # self.resp = self.client.get('/empresa/editar/1/')
 
     def test_404_template_empresa(self):
         self.assertEqual(404, self.resp.status_code)
@@ -77,6 +80,7 @@ class editarEmpresa_accept_blank_Post(TestCase):
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
             atividade="ATIVIDADE MILITAR",
+            cnpj="62.823.257/0001-09",
             endereco="",
             quadra="10",
             lote="2",
@@ -92,6 +96,7 @@ class editarEmpresa_accept_blank_Post(TestCase):
              'name': 'Ozark',
              'categoria_atividade': 'comercio',
              'atividade': 'lavagem de dinheiro',
+             'cnpj': '62.823.257/0001-09',
              'endereco': 'Rua Belo Horizonte',
              'quadra': '102',
              'lote': '20',
@@ -101,7 +106,8 @@ class editarEmpresa_accept_blank_Post(TestCase):
              'responsavel': 'desconhecido',
              'situacao': 'Ativa',
              'observacao': ''}
-        self.resp = self.client.post('/editarEmpresa/1/', d)
+
+        self.resp = self.client.post(r('empresas:editar', self.obj.pk), d)
 
     def test_data_changed_name(self):
         q = EmpresaModel.objects.filter(pk=1)
@@ -120,6 +126,7 @@ class editarEmpresaPost(TestCase):
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
+            cnpj="62.823.257/0001-09",
             atividade="ATIVIDADE MILITAR",
             endereco="RUA SHIELD, 199",
             quadra="10",
@@ -134,6 +141,7 @@ class editarEmpresaPost(TestCase):
         self.obj.save()
         d = {'ref_cad': '12.5.12.01.002',
              'name': 'Ozark',
+             'cnpj': '62.823.257/0001-09',
              'categoria_atividade': 'comercio',
              'atividade': 'lavagem de dinheiro',
              'endereco': 'Rua elo Horizonte',
@@ -145,7 +153,7 @@ class editarEmpresaPost(TestCase):
              'responsavel': 'desconhecido',
              'situacao': 'Ativa',
              'observacao': ''}
-        self.resp = self.client.post('/editarEmpresa/1/', d)
+        self.resp = self.client.post(r('empresas:editar', self.obj.pk), d)
 
     def test_template_home(self):
         self.assertTemplateUsed(self.resp, 'editar.html')
@@ -189,7 +197,7 @@ class editarEmpresaPostFail(TestCase):
              'phone': '055-19-3541-0000',
              'responsavel': 'desconhecido',
              'situacao': 'Ativa'}
-        self.resp = self.client.post('/editarEmpresa/1/', d)
+        self.resp = self.client.post(r('empresas:editar', self.obj.pk), d)
 
     def test_template_home(self):
         self.assertTemplateUsed(self.resp, 'editar.html')

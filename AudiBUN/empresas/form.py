@@ -12,7 +12,8 @@ class EmpresaForm(ModelForm):
 
         labels = {
             'ref_cad': 'Referência Cadastral',
-            'name': 'Nome',
+            'name': 'Empresa',
+            'cnpj': 'CNPJ',
             'categoria_atividade': 'Atividade',
             'atividade': 'Descrição da atividade',
             'endereco': 'Endereço',
@@ -28,6 +29,7 @@ class EmpresaForm(ModelForm):
         widgets = {
             'ref_cad': forms.TextInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
+            'cnpj': forms.TextInput(attrs={'class': 'form-control'}),
             'categoria_atividade': forms.Select(choices=ATIVIDADE_CHOICES,attrs={'class': 'form-control'}),
             'atividade': forms.TextInput(attrs={'class': 'form-control'}),
             'endereco': forms.TextInput(attrs={'class': 'form-control'}),
@@ -69,6 +71,24 @@ class EmpresaForm(ModelForm):
                 'required': ("Situação da empresa não pode ser em branco."),
             },
         }
+
+    def clean_cnpj(self):
+        '''Validate CNPJ field in the format: 00.000.000/0000-00 '''
+        cnpj = self.cleaned_data['cnpj']
+        sub1, sub2 = cnpj.split('/')
+        valores = sub1.split('.')
+        for v in valores:
+            try:
+                int(v)
+            except:
+                raise ValidationError('CNPJ pode conter apenas números no formato: 00.000.000/0000-00')
+        valores = sub2.split('-')
+        for v in valores:
+            try:
+                int(v)
+            except:
+                raise ValidationError('CNPJ pode conter apenas números no formato: 00.000.000/0000-00')
+        return self.cleaned_data['cnpj']
 
     def clean_ref_cad(self):
         referencia_cadastral = self.cleaned_data['ref_cad']

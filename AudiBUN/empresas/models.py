@@ -7,17 +7,19 @@ ATIVIDADE_CHOICES = (
 )
 
 DISTRITO_CHOICES = (
-    ('1','DISTRITO 1'),
-    ('2', 'DISTRITO 2'),
-    ('3', 'DISTRITO 3'),
-    ('4', 'DISTRITO 4'),
-    ('5', 'DISTRITO 5'),
+    ('1','DISTRITO I'),
+    ('2', 'DISTRITO II'),
+    ('3', 'DISTRITO III'),
+    ('4', 'DISTRITO IV'),
+    ('5', 'DISTRITO V'),
+    ('5', 'DISTRITO VI'),
     ('0','OUTROS'),
 )
 
 class EmpresaModel(Model):
     ref_cad = CharField(max_length=20)
     name = CharField(max_length=100)
+    cnpj = CharField(max_length=20, default='00.000.000/0000-00')
     categoria_atividade = CharField(max_length=10, \
             choices=ATIVIDADE_CHOICES, default='prestacao')
     atividade = CharField(default='NÃO DEFINIDA', blank=False, max_length=50)
@@ -34,3 +36,5 @@ class EmpresaModel(Model):
     observacao = TextField(default='NENHUMA OBSERVAÇÃO', blank=True)
     created_at = DateTimeField(auto_now_add=True)
 
+def __str__(self):
+    return self.name

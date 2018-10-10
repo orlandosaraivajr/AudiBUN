@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.shortcuts import resolve_url as r
 
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
@@ -6,13 +7,13 @@ from AudiBUN.empresas.models import EmpresaModel
 
 class visualizarEmpresaGetFail(TestCase):
     def setUp(self):
-        self.resp = self.client.get('/cadastroEmpresa/1')
+        self.resp = self.client.get(r('empresas:listar_editar'))
 
-    def test_301_response(self):
-        self.assertEqual(301, self.resp.status_code)
+    def test_200_response(self):
+        self.assertEqual(200, self.resp.status_code)
 
 
-class visualizarEmpresaGetGet(TestCase):
+class visualizarEmpresaGet(TestCase):
     def setUp(self):
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
@@ -28,7 +29,7 @@ class visualizarEmpresaGetGet(TestCase):
             situacao="Ativa"
         )
         self.obj.save()
-        self.resp = self.client.get('/cadastroEmpresa/1/')
+        self.resp = self.client.get(r('empresas:listar', self.obj.pk))
 
     def test_template_home(self):
         self.assertTemplateUsed(self.resp, 'visualizar.html')
@@ -39,7 +40,7 @@ class visualizarEmpresaGetGet(TestCase):
     def test_html(self):
         tags = (
             ('Visualizar cadastro da Empresa', 2),
-            ('readonly', 14),
+            ('readonly', 15),
 
         )
         for text, count in tags:

@@ -36,13 +36,13 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseEmpresas">
             <li>
-              <a href="/cadastroEmpresa/">
+              <a href="{% url 'empresas:cadastrar' %}">
                 <i class="fa fa-fw fa-table"></i>
                 Cadastrar
               </a>
             </li>
             <li>
-              <a href="/editarEmpresa/">
+              <a href="{% url 'empresas:listar_editar' %}">
                 <i class="fa fa-fw fa-wrench"></i>
                 Editar
               </a>

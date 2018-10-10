@@ -38,12 +38,12 @@
               {% for empresa in empresas %}
                 <tr>
                 <td>
-                      <a href="/cadastroEmpresa/{{ empresa.pk }}">
+                      <a href="{% url 'empresas:listar' empresa.pk %}">
                         {{ empresa.ref_cad }}
                       </a>
                   </td>
                   <td>
-                      <a href="/cadastroEmpresa/{{ empresa.pk }}">
+                      <a href="{% url 'empresas:listar' empresa.pk %}">
                         {{ empresa.name }}
                       </a>
                   </td>

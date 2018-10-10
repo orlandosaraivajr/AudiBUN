@@ -1,12 +1,12 @@
 from django.test import TestCase
-
+from django.shortcuts import resolve_url as r
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
 
 
 class cadastroEmpresaGet(TestCase):
     def setUp(self):
-        self.resp = self.client.get('/cadastroEmpresa/')
+        self.resp = self.client.get(r('empresas:cadastrar'))
 
     def test_template_home(self):
         self.assertTemplateUsed(self.resp, 'cadastro.html')
@@ -19,7 +19,8 @@ class cadastroEmpresaGet(TestCase):
             ('Referência Cadastral', 1),
             ('Quadra', 1),
             ('Fone', 1),
-            ('Nome', 1),
+            ('Empresa', 11),
+            ('CNPJ', 1),
             ('Atividade', 1),
             ('Responsável', 1)
         )
@@ -30,8 +31,8 @@ class cadastroEmpresaGet(TestCase):
     def test_html(self):
         tags = (
             ('<form', 1),
-            ('<input', 13),
-            ('type="text"', 10),
+            ('<input', 14),
+            ('type="text"', 11),
             ('type="email"', 1),
             ('type="submit"', 1)
         )
@@ -52,6 +53,7 @@ class cadastroEmpresaPostValid(TestCase):
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
         data['name'] = "INDUSTRIA STARK LTDA"
+        data['cnpj'] = "62.823.257/0001-09"
         data['categoria_atividade'] = "prestacao"
         data['atividade'] = "ATIVIDADE MILITAR"
         data['endereco'] = "RUA SHIELD, 199"
@@ -63,7 +65,7 @@ class cadastroEmpresaPostValid(TestCase):
         data['responsavel'] = "Anotny Stark"
         data['situacao'] = "Ativa"
         data['observacao'] = "1"
-        self.resp = self.client.post('/cadastroEmpresa/', data)
+        self.resp = self.client.post(r('empresas:cadastrar'), data)
 
     def test_post(self):
         """Valid POST should redirect to /inscricao/"""
@@ -82,7 +84,7 @@ class cadastroEmpresaPostInvalid(TestCase):
         data['endereco'] = "RUA SHIELD, 199"
         data['quadra'] = "10"
         data['lote'] = "2"
-        self.resp = self.client.post('/cadastroEmpresa/', data)
+        self.resp = self.client.post(r('empresas:cadastrar'), data)
 
     def test_post(self):
         """Invalid POST should not redirect to /inscricao/"""

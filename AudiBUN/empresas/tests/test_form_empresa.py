@@ -8,7 +8,7 @@ class EmpresaFormTest(TestCase):
         self.form = EmpresaForm()
 
     def test_form_has_fields(self):
-        expected = ['ref_cad', 'name','categoria_atividade', 'atividade']
+        expected = ['ref_cad', 'name','cnpj','categoria_atividade', 'atividade']
         expected += ['endereco','quadra','lote','categoria_distrito','bairro']
         expected += ['email', 'phone', 'responsavel', 'situacao', 'observacao']
         self.assertSequenceEqual(expected, list(self.form.fields))
@@ -19,6 +19,7 @@ class CleanFormTest(TestCase):
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
         data['name'] = "Industria Stark"
+        data['cnpj'] = "62.823.257/0001-09"
         data['categoria_atividade'] = "prestacao"
         data['atividade'] = "aTIVIdAde Militar"
         data['endereco'] = "RUA Shield, 199"
@@ -80,6 +81,7 @@ class Test_Field_Ref_Cad_Test(TestCase):
         self.data = {}
         self.data['ref_cad'] = "12.5.12.01.001"
         self.data['name'] = "xxx"
+        self.data['cnpj'] = '62.823.257/0001-09'
         self.data['categoria_atividade'] = "prestacao"
         self.data['atividade'] = "xxx"
         self.data['endereco'] = "xxx"
@@ -136,3 +138,57 @@ class Test_Field_Ref_Cad_Test(TestCase):
         self.data['ref_cad'] = "1.12.12.01.X"
         self.form = EmpresaForm(self.data)
         self.assertEqual(False, self.form.is_valid())
+
+
+class Test_Field_CNPJ_Test(TestCase):
+    def setUp(self):
+        self.data = {}
+        self.data['ref_cad'] = "12.5.12.01.001"
+        self.data['name'] = "xxx"
+        self.data['cnpj'] = '62.823.257/0001-09'
+        self.data['categoria_atividade'] = "prestacao"
+        self.data['atividade'] = "xxx"
+        self.data['endereco'] = "xxx"
+        self.data['quadra'] = "10a"
+        self.data['lote'] = "2a"
+        self.data['categoria_distrito'] = "0"
+        self.data['email'] = ""
+        self.data['phone'] = ""
+        self.data['responsavel'] = ""
+        self.data['situacao'] = "Ativa"
+        self.data['observacao'] = ""
+        self.form = EmpresaForm(self.data)
+        self.form.is_valid()
+
+    def test_valid_form(self):
+        self.assertEqual(True, self.form.is_valid())
+
+    def test_change_ref_cad_invalid_format_1(self):
+        self.data['cnpj'] = "62.8A3.257/0001-09"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
+    def test_change_ref_cad_invalid_format_2(self):
+        self.data['cnpj'] = "6W2.823.257/0001-09"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
+    def test_change_ref_cad_invalid_format_3(self):
+        self.data['cnpj'] = "6W2.823.2Q7/0001-09"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
+    def test_change_ref_cad_invalid_format_4(self):
+        self.data['cnpj'] = "6W2.823.257/0s01-09"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
+    def test_change_ref_cad_invalid_format_5(self):
+        self.data['cnpj'] = "6W2.823.257/0001-0A"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(False, self.form.is_valid())
+
+    def test_change_ref_cad_valid_format_1(self):
+        self.data['cnpj'] = "44.333.222/0001-09"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(True, self.form.is_valid())

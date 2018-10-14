@@ -1,10 +1,11 @@
-from django.urls import path
-
+from django.urls import path, include
 from . import views
 
-app_name = 'core'
+
 urlpatterns = [
-    path('index', views.home, name='index'),
-    path('', views.home,name='root'),
+    path('index/', views.home, name='index'),
+    path('', views.home,name='home'),
+    path('empresas/', include('AudiBUN.empresas.urls')),
+    path('vistorias/', include('AudiBUN.vistorias.urls')),
     path('login/', views.login, name='login'),
 ]

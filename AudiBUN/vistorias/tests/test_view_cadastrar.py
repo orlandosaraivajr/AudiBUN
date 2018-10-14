@@ -1,39 +1,32 @@
 from django.test import TestCase
 from django.shortcuts import resolve_url as r
-from AudiBUN.empresas.form import EmpresaForm
-from AudiBUN.empresas.models import EmpresaModel
+from AudiBUN.vistorias.form import VistoriaForm
 
 
-class cadastroEmpresaGet(TestCase):
+class cadastroVistoriasGet(TestCase):
     def setUp(self):
-        self.resp = self.client.get(r('empresas:empresas_cadastrar'))
+        self.resp = self.client.get(r('vistorias:vistorias_cadastrar'))
 
     def test_template_home(self):
-        self.assertTemplateUsed(self.resp, 'cadastro.html')
+        self.assertTemplateUsed(self.resp, 'vistorias_cadastro.html')
 
     def test_200_template_home(self):
         self.assertEqual(200, self.resp.status_code)
 
     def test_labels_html(self):
         tags = (
-            ('Referência Cadastral', 1),
-            ('Quadra', 1),
-            ('Fone', 1),
-            ('Empresa', 11),
-            ('CNPJ', 1),
-            ('Atividade', 1),
-            ('Responsável', 1)
+            ('Vistorias', 3),
+            ('Foto', 1),
         )
         for text, count in tags:
             with self.subTest():
                 self.assertContains(self.resp, text, count)
 
+
     def test_html(self):
         tags = (
             ('<form', 1),
-            ('<input', 14),
-            ('type="text"', 11),
-            ('type="email"', 1),
+            ('<input', 3),
             ('type="submit"', 1)
         )
         for text, count in tags:
@@ -45,9 +38,9 @@ class cadastroEmpresaGet(TestCase):
 
     def test_has_form(self):
         form = self.resp.context['form']
-        self.assertIsInstance(form, EmpresaForm)
+        self.assertIsInstance(form, VistoriaForm)
 
-
+'''
 class cadastroEmpresaPostValid(TestCase):
     def setUp(self):
         data = {}
@@ -103,3 +96,4 @@ class cadastroEmpresaPostInvalid(TestCase):
 
     def test_dont_save_Empresa(self):
         self.assertFalse(EmpresaModel.objects.exists())
+'''

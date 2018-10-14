@@ -36,5 +36,10 @@ class EmpresaModel(Model):
     observacao = TextField(default='NENHUMA OBSERVAÇÃO', blank=True)
     created_at = DateTimeField(auto_now_add=True)
 
-def __str__(self):
-    return self.name
+
+    def __str__(self):
+        return self.name
+
+
+    def __unicode__(self):
+        return u"%s" % self.name

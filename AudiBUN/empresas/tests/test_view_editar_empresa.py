@@ -6,7 +6,7 @@ from AudiBUN.empresas.models import EmpresaModel
 
 class editarEmpresasGet(TestCase):
     def setUp(self):
-        self.resp = self.client.get(r('empresas:listar_editar'))
+        self.resp = self.client.get(r('empresas:empresas_listar_editar'))
 
     def test_template_home(self):
         self.assertTemplateUsed(self.resp, 'empresas.html')
@@ -69,7 +69,6 @@ class editarEmpresaGetNoData(TestCase):
     def setUp(self):
         data = {'id_empresa':'1'}
         self.resp = self.client.get(r('empresas:editar', 1))
-        # self.resp = self.client.get('/empresa/editar/1/')
 
     def test_404_template_empresa(self):
         self.assertEqual(404, self.resp.status_code)

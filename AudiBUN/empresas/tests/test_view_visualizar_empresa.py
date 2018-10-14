@@ -7,7 +7,7 @@ from AudiBUN.empresas.models import EmpresaModel
 
 class visualizarEmpresaGetFail(TestCase):
     def setUp(self):
-        self.resp = self.client.get(r('empresas:listar_editar'))
+        self.resp = self.client.get(r('empresas:empresas_listar_editar'))
 
     def test_200_response(self):
         self.assertEqual(200, self.resp.status_code)
@@ -29,7 +29,7 @@ class visualizarEmpresaGet(TestCase):
             situacao="Ativa"
         )
         self.obj.save()
-        self.resp = self.client.get(r('empresas:listar', self.obj.pk))
+        self.resp = self.client.get(r('empresas:empresas_listar', self.obj.pk))
 
     def test_template_home(self):
         self.assertTemplateUsed(self.resp, 'visualizar.html')

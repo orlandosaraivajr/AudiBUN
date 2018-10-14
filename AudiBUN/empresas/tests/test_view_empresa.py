@@ -9,7 +9,7 @@ class cadastroEmpresaGet(TestCase):
         self.resp = self.client.get(r('empresas:empresas_cadastrar'))
 
     def test_template_home(self):
-        self.assertTemplateUsed(self.resp, 'cadastro.html')
+        self.assertTemplateUsed(self.resp, 'empresas_cadastro.html')
 
     def test_200_template_home(self):
         self.assertEqual(200, self.resp.status_code)
@@ -91,7 +91,7 @@ class cadastroEmpresaPostInvalid(TestCase):
         self.assertEqual(200, self.resp.status_code)
 
     def test_template(self):
-        self.assertTemplateUsed(self.resp, 'cadastro.html')
+        self.assertTemplateUsed(self.resp, 'empresas_cadastro.html')
 
     def test_has_form(self):
         form = self.resp.context['form']

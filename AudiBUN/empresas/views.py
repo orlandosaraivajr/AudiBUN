@@ -14,13 +14,13 @@ def cadastro(request):
 
 def new(request):
     context = {'form': EmpresaForm()}
-    return render(request, 'cadastro.html', context)
+    return render(request, 'empresas_cadastro.html', context)
 
 
 def create(request):
     form = EmpresaForm(request.POST)
     if not form.is_valid():
-        return render(request, 'cadastro.html',
+        return render(request, 'empresas_cadastro.html',
                       {'form': form})
     else:
         EmpresaModel.objects.create(**form.cleaned_data)
@@ -32,7 +32,7 @@ def create(request):
 def editar(request):
     context = {'form': EmpresaForm(),
                'empresas': EmpresaModel.objects.all()}
-    return render(request, 'empresas.html', context)
+    return render(request, 'empresas_listar_editar.html', context)
 
 
 def editar_empresa(request, id_empresa):
@@ -53,12 +53,12 @@ def editar_empresa(request, id_empresa):
             obj = get_object_or_404(EmpresaModel, pk=id)
             form = EmpresaForm(instance=obj)
             context = {'form': form}
-        return render(request, "editar.html", context)
+        return render(request, "empresas_editar.html", context)
     else:
         obj = get_object_or_404(EmpresaModel, pk=id)
         form = EmpresaForm(instance=obj)
         context = {'form': form}
-        return render(request, "editar.html", context)
+        return render(request, "empresas_editar.html", context)
 
 
 def visualizar_empresa(request, id_empresa):
@@ -67,4 +67,4 @@ def visualizar_empresa(request, id_empresa):
     form = EmpresaForm(instance=obj)
     form.read_only()
     context = {'form': form}
-    return render(request, "visualizar.html", context)
+    return render(request, "empresas_visualizar.html", context)

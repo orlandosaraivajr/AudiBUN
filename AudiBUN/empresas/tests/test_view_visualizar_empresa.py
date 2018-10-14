@@ -32,7 +32,7 @@ class visualizarEmpresaGet(TestCase):
         self.resp = self.client.get(r('empresas:empresas_listar', self.obj.pk))
 
     def test_template_home(self):
-        self.assertTemplateUsed(self.resp, 'visualizar.html')
+        self.assertTemplateUsed(self.resp, 'empresas_visualizar.html')
 
     def test_200_template_empresa(self):
         self.assertEqual(200, self.resp.status_code)

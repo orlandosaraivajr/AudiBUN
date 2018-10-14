@@ -9,7 +9,7 @@ class editarEmpresasGet(TestCase):
         self.resp = self.client.get(r('empresas:empresas_listar_editar'))
 
     def test_template_home(self):
-        self.assertTemplateUsed(self.resp, 'empresas.html')
+        self.assertTemplateUsed(self.resp, 'empresas_listar_editar.html')
 
     def test_200_template_empresas(self):
         self.assertEqual(200, self.resp.status_code)
@@ -47,7 +47,7 @@ class editarEmpresaGet(TestCase):
         self.resp = self.client.get(r('empresas:editar', self.obj.pk))
 
     def test_template_home(self):
-        self.assertTemplateUsed(self.resp, 'editar.html')
+        self.assertTemplateUsed(self.resp, 'empresas_editar.html')
 
     def test_200_template_empresa(self):
         self.assertEqual(200, self.resp.status_code)
@@ -155,7 +155,7 @@ class editarEmpresaPost(TestCase):
         self.resp = self.client.post(r('empresas:editar', self.obj.pk), d)
 
     def test_template_home(self):
-        self.assertTemplateUsed(self.resp, 'editar.html')
+        self.assertTemplateUsed(self.resp, 'empresas_editar.html')
 
     def test_200_template_empresa(self):
         self.assertEqual(200, self.resp.status_code)
@@ -199,7 +199,7 @@ class editarEmpresaPostFail(TestCase):
         self.resp = self.client.post(r('empresas:editar', self.obj.pk), d)
 
     def test_template_home(self):
-        self.assertTemplateUsed(self.resp, 'editar.html')
+        self.assertTemplateUsed(self.resp, 'empresas_editar.html')
 
     def test_200_template_empresa(self):
         self.assertEqual(200, self.resp.status_code)

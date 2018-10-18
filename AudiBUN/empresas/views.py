@@ -1,6 +1,8 @@
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
+
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
 
@@ -26,7 +28,7 @@ def create(request):
         EmpresaModel.objects.create(**form.cleaned_data)
         # Sucess feedback
 #        messages.success(request, 'Inscrição Realizada com Sucesso !')
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect(reverse('home'))
 
 
 def editar(request):

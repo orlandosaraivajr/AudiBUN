@@ -27,13 +27,15 @@ class Test_Field_Ref_Cad_Test(TestCase):
             observacao="",
         )
         self.empresa.save()
-        file_mock = SimpleUploadedFile('tiny.gif', TINY_GIF)
+        self.mocked_img = SimpleUploadedFile('tiny.gif', TINY_GIF)
         self.vistoria = {
             'observacao':"aaa",
-            'empresa':self.empresa.id,
-            'imagem':file_mock,
+            'empresa':self.empresa.id
         }
-        self.form = VistoriaForm(self.vistoria)
+        self.imagem = {
+            'imagem':self.mocked_img
+        }
+        self.form = VistoriaForm(self.vistoria, self.imagem)
         self.form.is_valid()
         self.form.save()
 
@@ -43,3 +45,6 @@ class Test_Field_Ref_Cad_Test(TestCase):
     def test_create(self):
         self.assertTrue(EmpresaModel.objects.exists())
         self.assertTrue(VistoriaModel.objects.exists())
+
+    def test_saved_image(self):
+        self.assertEqual(self.mocked_img, self.form.cleaned_data['imagem'])

@@ -6,7 +6,8 @@ from AudiBUN.vistorias.models import VistoriaModel
 class VistoriaForm(ModelForm):
     class Meta:
         model = VistoriaModel
-        exclude = ['created_at']
+        fields = ('empresa', 'imagem', 'observacao')
+        # exclude = ['created_at']
         labels = {
             'empresa': 'Empresa',
             'imagem': 'Foto',

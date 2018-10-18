@@ -1,6 +1,14 @@
-from django.test import TestCase
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.test import TestCase, override_settings
 from django.shortcuts import resolve_url as r
+
+from AudiBUN.empresas.models import EmpresaModel
 from AudiBUN.vistorias.form import VistoriaForm
+from AudiBUN.vistorias.models import VistoriaModel
+
+TINY_GIF = b'GIF89a\x01\x00\x01\x00\x00\xff\x00,\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x00;'
+
+@override_settings(DEFAULT_FILE_STORAGE='inmemorystorage.InMemoryStorage')
 
 
 class cadastroVistoriasGet(TestCase):
@@ -40,34 +48,40 @@ class cadastroVistoriasGet(TestCase):
         form = self.resp.context['form']
         self.assertIsInstance(form, VistoriaForm)
 
-'''
-class cadastroEmpresaPostValid(TestCase):
+
+class cadastroVistoriaPostValid(TestCase):
     def setUp(self):
-        data = {}
-        data['ref_cad'] = "12.5.12.01.001"
-        data['name'] = "INDUSTRIA STARK LTDA"
-        data['cnpj'] = "62.823.257/0001-09"
-        data['categoria_atividade'] = "prestacao"
-        data['atividade'] = "ATIVIDADE MILITAR"
-        data['endereco'] = "RUA SHIELD, 199"
-        data['quadra'] = "10"
-        data['lote'] = "2"
-        data['categoria_distrito'] = "0"
-        data['email'] = "tony@stark.com"
-        data['phone'] = "055-19-3541-0000"
-        data['responsavel'] = "Anotny Stark"
-        data['situacao'] = "Ativa"
-        data['observacao'] = "1"
-        self.resp = self.client.post(r('empresas:empresas_cadastrar'), data)
+        self.obj = EmpresaModel(
+            ref_cad="12.5.12.01.001",
+            name="INDUSTRIA STARK LTDA",
+            atividade="ATIVIDADE MILITAR",
+            endereco="RUA SHIELD, 199",
+            quadra="10",
+            lote="2",
+            email="tony@stark.com",
+            phone="055-19-3541-0000",
+            responsavel="Antony Stark",
+            situacao="Ativa",
+            observacao="",
+        )
+        self.obj.save()
+        self.imagem_mock = SimpleUploadedFile('tiny.gif', TINY_GIF)
+
+        self.data = {}
+        self.data['empresa'] = self.obj.pk
+        self.data['observacao'] = "agendado próxima visita"
+        self.data['imagem'] = self.imagem_mock
+
+        self.resp = self.client.post(r('vistorias:vistorias_cadastrar'), self.data)
 
     def test_post(self):
-        """Valid POST should redirect to /inscricao/"""
         self.assertEqual(302, self.resp.status_code)
 
-    def test_save_Empresa(self):
+    def test_saved_data(self):
         self.assertTrue(EmpresaModel.objects.exists())
+        self.assertTrue(VistoriaModel.objects.exists())
 
-
+'''
 class cadastroEmpresaPostInvalid(TestCase):
     def setUp(self):
         data = {}

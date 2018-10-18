@@ -26,7 +26,7 @@
                 {% endfor %}
             {% endif %}
         <div class="card-body">
-            <form action="." novalidate method="POST" enctype="multipart/form-data">
+            <form action={% url 'vistorias:vistorias_cadastrar' %} novalidate method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
 

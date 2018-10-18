@@ -17,3 +17,11 @@ class VistoriaForm(ModelForm):
             'empresa': forms.Select(attrs={'class': 'form-control'}),
             'observacao': forms.Textarea(attrs={'class': 'form-control'}),
         }
+        error_messages = {
+            'empresa': {
+                'required': ("Selecione a empresa fiscalizada."),
+            },
+            'imagem': {
+                'required': ("Selecione uma foto da vistoria."),
+            }
+        }

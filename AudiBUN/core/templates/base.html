@@ -36,6 +36,12 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseEmpresas">
             <li>
+              <a href="{% url 'home' %}">
+                <i class="fa fa-fw fa-table"></i>
+                Listar
+              </a>
+            </li>
+            <li>
               <a href="{% url 'empresas:empresas_cadastrar' %}">
                 <i class="fa fa-fw fa-table"></i>
                 Cadastrar
@@ -56,9 +62,15 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseFiscalização">
             <li>
+               <a href="{% url 'vistorias:vistorias_listar_todas' %}">
+                <i class="fa fa-fw fa-table"></i>
+               Listar
+              </a>
+            </li>
+            <li>
                <a href="{% url 'vistorias:vistorias_cadastrar' %}">
                 <i class="fa fa-fw fa-table"></i>
-               Vistorias
+               Cadastro
               </a>
             </li>
             <li>

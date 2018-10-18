@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">AudiBun</a>
+        </li>
+        <li class="breadcrumb-item active">Principal</li>
+      </ol>
+
+{% include "menu.html" %}
+
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Cadastro de Vistorias</div>
+        <div class="card-body">
+           {% if vistorias %}
+          <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+              <thead>
+                <tr>
+                  <th>{{ form.empresa.label }}</th>
+                  <th>Data da vistoria</th>
+                </tr>
+              </thead>
+              <tfoot>
+                <tr>
+                  <th>{{ form.empresa.label }}</th>
+                  <th>Data da vistoria</th>
+                </tr>
+              </tfoot>
+              <tbody>
+              {% for vistoria in vistorias %}
+                <tr>
+                <td>
+                      <a href="{% url 'vistorias:vistorias_listar' vistoria.pk %}">
+                        {{ vistoria.empresa }}
+                      </a>
+                  </td>
+                  <td>
+                      <a href="{% url 'vistorias:vistorias_listar' vistoria.pk %}">
+                        {{ vistoria.created_at }}
+                      </a>
+                  </td>
+                </tr>
+              {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+        </div>
+        {% include "mensagem_rodape.html" %}
+      </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+
+{% endblock %}

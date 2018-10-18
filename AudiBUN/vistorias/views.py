@@ -6,6 +6,12 @@ from AudiBUN.vistorias.form import VistoriaForm
 from AudiBUN.vistorias.models import VistoriaModel
 
 
+def listar(request):
+    context = {'form': VistoriaForm(),
+               'vistorias': VistoriaModel.objects.all()}
+    return render(request, 'vistorias_listar_todas.html', context)
+
+
 def cadastro(request):
     if request.method == 'POST':
         return create(request)
@@ -25,13 +31,14 @@ def create(request):
                       {'form': form})
     else:
         VistoriaModel.objects.create(**form.cleaned_data)
-        return HttpResponseRedirect(reverse('home'))
+        return HttpResponseRedirect(reverse('vistorias:vistorias_listar_todas'))
 
-def visualizar(request):
-    return HttpResponse('em desenvolvimento')
+def visualizar(request, id_vistoria):
+    id = id_vistoria
+    return HttpResponse('em desenvolvimento: Visualizar uma única vistoria')
 
 def editar(request):
-    return HttpResponse('em desenvolvimento')
+    return HttpResponse('em desenvolvimento: editar todas as vistorias')
 
-def editar_vistoria(request):
-    return HttpResponse('em desenvolvimento')
+def editar_vistoria(request, id_vistoria):
+    return HttpResponse('em desenvolvimento: editar apenas uma vistoria')

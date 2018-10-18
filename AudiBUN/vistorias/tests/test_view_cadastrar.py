@@ -9,8 +9,6 @@ from AudiBUN.vistorias.models import VistoriaModel
 TINY_GIF = b'GIF89a\x01\x00\x01\x00\x00\xff\x00,\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x00;'
 
 @override_settings(DEFAULT_FILE_STORAGE='inmemorystorage.InMemoryStorage')
-
-
 class cadastroVistoriasGet(TestCase):
     def setUp(self):
         self.resp = self.client.get(r('vistorias:vistorias_cadastrar'))
@@ -48,7 +46,7 @@ class cadastroVistoriasGet(TestCase):
         form = self.resp.context['form']
         self.assertIsInstance(form, VistoriaForm)
 
-
+@override_settings(DEFAULT_FILE_STORAGE='inmemorystorage.InMemoryStorage')
 class cadastroVistoriaPostValid(TestCase):
     def setUp(self):
         self.obj = EmpresaModel(

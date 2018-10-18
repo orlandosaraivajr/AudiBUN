@@ -81,33 +81,37 @@ class cadastroVistoriaPostValid(TestCase):
         self.assertTrue(EmpresaModel.objects.exists())
         self.assertTrue(VistoriaModel.objects.exists())
 
-'''
-class cadastroEmpresaPostInvalid(TestCase):
+
+class cadastroVistoriaPostInvalidImage(TestCase):
     def setUp(self):
-        data = {}
-        data['ref_cad'] = "12.5.12.01.001"
-        data['name'] = "INDUSTRIA STARK LTDA"
-        data['atividade'] = "ATIVIDADE MILITAR"
-        data['endereco'] = "RUA SHIELD, 199"
-        data['quadra'] = "10"
-        data['lote'] = "2"
-        self.resp = self.client.post(r('empresas:empresas_cadastrar'), data)
+        self.obj = EmpresaModel(
+            ref_cad="12.5.12.01.001",
+            name="INDUSTRIA STARK LTDA",
+            atividade="ATIVIDADE MILITAR",
+            endereco="RUA SHIELD, 199",
+            quadra="10",
+            lote="2",
+            email="tony@stark.com",
+            phone="055-19-3541-0000",
+            responsavel="Antony Stark",
+            situacao="Ativa",
+            observacao="",
+        )
+        self.obj.save()
+
+        self.data = {}
+        self.data['empresa'] = self.obj.pk
+        self.data['observacao'] = "agendado próxima visita"
+        self.data['imagem'] = None
+        self.resp = self.client.post(r('vistorias:vistorias_cadastrar'), self.data)
 
     def test_post(self):
-        """Invalid POST should not redirect to /inscricao/"""
         self.assertEqual(200, self.resp.status_code)
 
-    def test_template(self):
-        self.assertTemplateUsed(self.resp, 'cadastro.html')
-
-    def test_has_form(self):
-        form = self.resp.context['form']
-        self.assertIsInstance(form, EmpresaForm)
+    def test_saved_data(self):
+        self.assertTrue(EmpresaModel.objects.exists())
+        self.assertFalse(VistoriaModel.objects.exists())
 
     def test_form_has_errors(self):
         form = self.resp.context['form']
         self.assertTrue(form.errors)
-
-    def test_dont_save_Empresa(self):
-        self.assertFalse(EmpresaModel.objects.exists())
-'''

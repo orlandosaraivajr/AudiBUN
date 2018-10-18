@@ -1,5 +1,3 @@
-from unittest import mock
-
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
 
@@ -48,3 +46,6 @@ class Test_Field_Ref_Cad_Test(TestCase):
 
     def test_saved_image(self):
         self.assertEqual(self.mocked_img, self.form.cleaned_data['imagem'])
+
+    def test_observacao_upper(self):
+        self.assertEqual('AAA', self.form.cleaned_data['observacao'])

@@ -25,3 +25,6 @@ class VistoriaForm(ModelForm):
                 'required': ("Selecione uma foto da vistoria."),
             }
         }
+
+    def clean_observacao(self):
+        return self.cleaned_data['observacao'].upper()

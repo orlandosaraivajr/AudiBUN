@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load static %}
+{% block content %}
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="/">AudiBun</a>
+        </li>
+        <li class="breadcrumb-item active">Visualizar Vistorias</li>
+      </ol>
+
+{% include "menu.html" %}
+
+      <!-- Example DataTables Card-->
+      <div class="card mb-3">
+        <div class="card-header">
+          <i class="fa fa-table"></i> Visualizar Vistorias</div>
+        <div class="card-body">
+                <div class="form-group">
+
+                    <div class="container">
+
+                        <br>
+                            <label for="{{ form.empresa.id_for_label }}">{{ form.empresa.label }}</label>
+                                {{ form.empresa }}
+                        <br>
+                            <label for="{{ form.observacao.id_for_label }}">{{ form.observacao.label }}</label>
+                            {{ form.observacao}}
+                        <br>
+                        <style>
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                        </style>
+                        <img src='{{ vistoria.imagem.url }}' alt='{{ obj.empresa }}'>
+                    </div>
+                </div>
+        </div>
+        {% include "mensagem_rodape.html" %}
+      </div>
+    </div>
+    <!-- /.container-fluid-->
+    <!-- /.content-wrapper-->
+{% endblock %}

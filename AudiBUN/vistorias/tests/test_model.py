@@ -9,7 +9,6 @@ from AudiBUN.vistorias.models import VistoriaModel
 TINY_GIF = b'GIF89a\x01\x00\x01\x00\x00\xff\x00,\x00\x00\x00\x00\x01\x00\x01\x00\x00\x02\x00;'
 
 @override_settings(DEFAULT_FILE_STORAGE='inmemorystorage.InMemoryStorage')
-
 class VistoriaModelTest(TestCase):
     def setUp(self):
         self.empresa = EmpresaModel(

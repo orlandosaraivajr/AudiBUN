@@ -1,5 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from AudiBUN.vistorias.form import VistoriaForm
@@ -35,7 +35,15 @@ def create(request):
 
 def visualizar(request, id_vistoria):
     id = id_vistoria
-    return HttpResponse('em desenvolvimento: Visualizar uma única vistoria')
+    obj = get_object_or_404(VistoriaModel, pk=id)
+    form = VistoriaForm(instance=obj)
+    form.read_only()
+    context = {
+        'form': form,
+        'vistoria': obj
+    }
+    return render(request, "vistorias_visualizar.html", context)
+
 
 def editar(request):
     return HttpResponse('em desenvolvimento: editar todas as vistorias')

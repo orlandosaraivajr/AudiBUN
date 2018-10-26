@@ -1,5 +1,6 @@
+from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase, override_settings
+from django.test import TestCase, override_settings, Client
 from django.shortcuts import resolve_url as r
 
 from AudiBUN.empresas.models import EmpresaModel
@@ -11,6 +12,15 @@ TINY_GIF = b'GIF89a\x01\x00\x01\x00\x00\xff\x00,\x00\x00\x00\x00\x01\x00\x01\x00
 @override_settings(DEFAULT_FILE_STORAGE='inmemorystorage.InMemoryStorage')
 class cadastroVistoriasGet(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.resp = self.client.get(r('vistorias:vistorias_cadastrar'))
 
     def test_template_home(self):
@@ -49,6 +59,15 @@ class cadastroVistoriasGet(TestCase):
 @override_settings(DEFAULT_FILE_STORAGE='inmemorystorage.InMemoryStorage')
 class cadastroVistoriaPostValid(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
@@ -82,6 +101,15 @@ class cadastroVistoriaPostValid(TestCase):
 
 class cadastroVistoriaPostInvalidImage(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",

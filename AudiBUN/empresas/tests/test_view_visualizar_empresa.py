@@ -1,4 +1,5 @@
-from django.test import TestCase
+from django.contrib.auth.models import User
+from django.test import TestCase, Client
 from django.shortcuts import resolve_url as r
 
 from AudiBUN.empresas.form import EmpresaForm
@@ -7,6 +8,15 @@ from AudiBUN.empresas.models import EmpresaModel
 
 class visualizarEmpresaGetFail(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.resp = self.client.get(r('empresas:empresas_listar_editar'))
 
     def test_200_response(self):
@@ -15,6 +25,15 @@ class visualizarEmpresaGetFail(TestCase):
 
 class visualizarEmpresaGet(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",

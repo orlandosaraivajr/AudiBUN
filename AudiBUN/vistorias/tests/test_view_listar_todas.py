@@ -1,9 +1,19 @@
-from django.test import TestCase, override_settings
+from django.contrib.auth.models import User
+from django.test import TestCase, override_settings, Client
 from django.shortcuts import resolve_url as r
 
 
 class clistarVistoriasGet(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.resp = self.client.get(r('vistorias:vistorias_listar_todas'))
 
     def test_template_home(self):

@@ -19,39 +19,17 @@
   <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
 </head>
 
-
 <body class="bg-dark">
-{% if acesso_negado %}
   <div class="container">
     <div class="card card-login mx-auto mt-5">
       <div class="card-header">AudiBun - Fatec Araras</div>
       <div class="card-body">
         <form>
-          <a class="btn btn-danger btn-block" href="{% url 'login' %}">Acesso Negado</a>
+          <a class="btn btn-warning btn-block" href="{% url 'home' %}">Você foi desconectado do sistema</a>
         </form>
       </div>
     </div>
   </div>
-{% else %}
-  <div class="container">
-    <div class="card card-login mx-auto mt-5">
-      <div class="card-header">AudiBun - Fatec Araras</div>
-      <div class="card-body">
-        <form action="{% url 'login' %}" method="POST">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="exampleInputEmail">Usuário</label>
-            <input class="form-control" name="username" id="username" type="text" aria-describedby="emailHelp" placeholder="Digite seu usuário">
-
-            <label for="exampleInputPassword">Senha</label>
-            <input class="form-control" name="password" id="password" type="password" placeholder="Digite a senha">
-           </div>
-            <input class="btn btn-primary btn-block" type="submit" value="Acessar">
-        </form>
-      </div>
-    </div>
-  </div>
-{% endif %}
   <!-- Bootstrap core JavaScript-->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

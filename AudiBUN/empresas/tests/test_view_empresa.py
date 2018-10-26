@@ -1,4 +1,5 @@
-from django.test import TestCase
+from django.contrib.auth.models import User
+from django.test import TestCase, Client
 from django.shortcuts import resolve_url as r
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
@@ -6,6 +7,15 @@ from AudiBUN.empresas.models import EmpresaModel
 
 class cadastroEmpresaGet(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.resp = self.client.get(r('empresas:empresas_cadastrar'))
 
     def test_template_home(self):
@@ -50,6 +60,15 @@ class cadastroEmpresaGet(TestCase):
 
 class cadastroEmpresaPostValid(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
         data['name'] = "INDUSTRIA STARK LTDA"
@@ -68,7 +87,6 @@ class cadastroEmpresaPostValid(TestCase):
         self.resp = self.client.post(r('empresas:empresas_cadastrar'), data)
 
     def test_post(self):
-        """Valid POST should redirect to /inscricao/"""
         self.assertEqual(302, self.resp.status_code)
 
     def test_save_Empresa(self):
@@ -77,6 +95,15 @@ class cadastroEmpresaPostValid(TestCase):
 
 class cadastroEmpresaPostInvalid(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
         data['name'] = "INDUSTRIA STARK LTDA"

@@ -8,4 +8,6 @@ urlpatterns = [
     path('empresas/', include('AudiBUN.empresas.urls')),
     path('vistorias/', include('AudiBUN.vistorias.urls')),
     path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
+
 ]

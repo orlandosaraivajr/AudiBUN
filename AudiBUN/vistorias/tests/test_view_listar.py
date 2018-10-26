@@ -1,7 +1,6 @@
-import tempfile
-
+from django.contrib.auth.models import User
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase, override_settings
+from django.test import TestCase, Client
 from django.shortcuts import resolve_url as r
 
 
@@ -14,6 +13,15 @@ TINY_GIF = b'GIF89a\x01\x00\x01\x00\x00\xff\x00,\x00\x00\x00\x00\x01\x00\x01\x00
 
 class visualizarVistoriaGetFail(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.resp = self.client.get(r('vistorias:vistorias_listar', 1))
 
     def test_404_template_vistorias(self):
@@ -21,6 +29,15 @@ class visualizarVistoriaGetFail(TestCase):
 
 class visualizarVistoriaGet(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.empresa = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",

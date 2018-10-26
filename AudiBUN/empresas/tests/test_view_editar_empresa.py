@@ -1,4 +1,5 @@
-from django.test import TestCase
+from django.contrib.auth.models import User
+from django.test import TestCase, Client
 from django.shortcuts import resolve_url as r
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
@@ -6,6 +7,15 @@ from AudiBUN.empresas.models import EmpresaModel
 
 class editarEmpresasGet(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.resp = self.client.get(r('empresas:empresas_listar_editar'))
 
     def test_template_home(self):
@@ -29,6 +39,15 @@ class editarEmpresasGet(TestCase):
 
 class editarEmpresaGet(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
@@ -67,6 +86,15 @@ class editarEmpresaGet(TestCase):
 
 class editarEmpresaGetNoData(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         data = {'id_empresa':'1'}
         self.resp = self.client.get(r('empresas:editar', 1))
 
@@ -75,6 +103,15 @@ class editarEmpresaGetNoData(TestCase):
 
 class editarEmpresa_accept_blank_Post(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
@@ -120,8 +157,18 @@ class editarEmpresa_accept_blank_Post(TestCase):
         q = EmpresaModel.objects.filter(pk=1)
         self.assertEqual(q[0].categoria_atividade, 'comercio')
 
+
 class editarEmpresaPost(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",
@@ -174,6 +221,15 @@ class editarEmpresaPost(TestCase):
 
 class editarEmpresaPostFail(TestCase):
     def setUp(self):
+        self.username = 'admin'
+        self.password = '123mudar'
+        self.client = Client()
+        User.objects.create_user(
+            self.username,
+            'admin@admin.com',
+            self.password)
+        self.client.login(username=self.username,
+                          password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
             name="INDUSTRIA STARK LTDA",

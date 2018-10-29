@@ -2,6 +2,12 @@ from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from django.shortcuts import resolve_url as r
 
+class HomeGetRedirectTest(TestCase):
+    def setUp(self):
+        self.resp = self.client.get(r('home'))
+
+    def test_302_response(self):
+        self.assertEqual(302, self.resp.status_code)
 
 class LoginTemplateGetTest(TestCase):
     def setUp(self):

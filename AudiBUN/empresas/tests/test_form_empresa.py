@@ -139,6 +139,17 @@ class Test_Field_Ref_Cad_Test(TestCase):
         self.form = EmpresaForm(self.data)
         self.assertEqual(False, self.form.is_valid())
 
+    def test_change_cnpj_fail(self):
+        self.data['cnpj'] = "0"
+        self.form = EmpresaForm(self.data)
+        self.assertEqual(True, self.form.is_valid())
+
+    def test_change_cnpj_fail(self):
+        self.data['cnpj'] = "0"
+        self.form = EmpresaForm(self.data)
+        self.form.is_valid()
+        cnpj = self.form.cleaned_data['cnpj']
+        self.assertEqual(cnpj,'00.000.000/0000-00')
 
 class Test_Field_CNPJ_Test(TestCase):
     def setUp(self):

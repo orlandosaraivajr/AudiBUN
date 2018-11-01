@@ -75,6 +75,12 @@ class EmpresaForm(ModelForm):
     def clean_cnpj(self):
         '''Validate CNPJ field in the format: 00.000.000/0000-00 '''
         cnpj = self.cleaned_data['cnpj']
+        try:
+            sub1, sub2 = cnpj.split('/')
+            valores = sub1.split('.')
+        except:
+            self.cleaned_data['cnpj'] = '00.000.000/0000-00'
+            cnpj = self.cleaned_data['cnpj']
         sub1, sub2 = cnpj.split('/')
         valores = sub1.split('.')
         for v in valores:

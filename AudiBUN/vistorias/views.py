@@ -45,10 +45,3 @@ def visualizar(request, id_vistoria):
         'vistoria': obj
     }
     return render(request, "vistorias_visualizar.html", context)
-
-
-def editar(request):
-    return HttpResponse('em desenvolvimento: editar todas as vistorias')
-
-def editar_vistoria(request, id_vistoria):
-    return HttpResponse('em desenvolvimento: editar apenas uma vistoria')

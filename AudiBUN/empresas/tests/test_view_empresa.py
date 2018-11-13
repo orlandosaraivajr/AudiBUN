@@ -26,7 +26,7 @@ class cadastroEmpresaGet(TestCase):
 
     def test_labels_html(self):
         tags = (
-            ('Referência Cadastral', 1),
+            ('RC', 2),
             ('Quadra', 1),
             ('Fone', 1),
             ('Empresa', 11),

@@ -11,14 +11,14 @@ class EmpresaForm(ModelForm):
         exclude = ['created_at']
 
         labels = {
-            'ref_cad': 'Referência Cadastral',
+            'ref_cad': 'RC',
             'name': 'Empresa',
             'cnpj': 'CNPJ',
             'categoria_atividade': 'Atividade',
             'atividade': 'Descrição da atividade',
             'endereco': 'Endereço',
             'quadra': 'Quadra',
-            'lote': 'Lote',
+            'lote': 'Lt',
             'categoria_distrito': 'Distrito',
             'email': 'E-mail',
             'phone': 'Fone',
@@ -130,6 +130,9 @@ class EmpresaForm(ModelForm):
 
     def clean_endereco(self):
         return self.cleaned_data['endereco'].upper()
+
+    def clean_bairro(self):
+        return  self.cleaned_data['bairro'].upper()
 
     def clean_lote(self):
         return self.cleaned_data['lote'].upper()

@@ -3,6 +3,9 @@ from django.shortcuts import resolve_url as r
 from AudiBUN.empresas.form import EmpresaForm
 from django.contrib.auth.models import User
 
+from AudiBUN.empresas.models import EmpresaModel
+
+
 class HomeTemplateTest(TestCase):
     def setUp(self):
         self.username = 'admin'
@@ -29,7 +32,6 @@ class HomeTemplateTest(TestCase):
         form = self.resp.context['form']
         self.assertIsInstance(form, EmpresaForm)
 
-
 class IndexTemplateTest(TestCase):
     def setUp(self):
         self.username = 'admin'
@@ -55,3 +57,4 @@ class IndexTemplateTest(TestCase):
     def test_has_form(self):
         form = self.resp.context['form']
         self.assertIsInstance(form, EmpresaForm)
+

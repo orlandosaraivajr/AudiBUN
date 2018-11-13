@@ -24,33 +24,41 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>{{ form.ref_cad.label }}</th>
                   <th>{{ form.name.label }}</th>
+                  <th>{{ form.categoria_distrito.label }}</th>
+                  <th>{{ form.bairro.label }}</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>{{ form.ref_cad.label }}</th>
                   <th>{{ form.name.label }}</th>
+                  <th>{{ form.categoria_distrito.label }}</th>
+                  <th>{{ form.bairro.label }}</th>
                 </tr>
               </tfoot>
               <tbody>
               {% for empresa in empresas %}
                 <tr>
-                <td>
-                      <a href="{% url 'empresas:empresas_listar' empresa.pk %}">
-                        {{ empresa.ref_cad }}
+                  <td>
+                      <a href="{% url 'empresas:editar' empresa.pk %}">
+                        {{ empresa.name }}
                       </a>
                   </td>
                   <td>
-                      <a href="{% url 'empresas:empresas_listar' empresa.pk %}">
-                        {{ empresa.name }}
+                        <a href="{% url 'empresas:editar' empresa.pk %}">
+                        {{ empresa.distrito_verbose }}
+                      </a>
+                  </td>
+                  <td>
+                        <a href="{% url 'empresas:editar' empresa.pk %}">
+                        {{ empresa.bairro }}
                       </a>
                   </td>
                 </tr>
               {% endfor %}
               </tbody>
             </table>
+
           </div>
         {% endif %}
         </div>

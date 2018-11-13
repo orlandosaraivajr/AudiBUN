@@ -24,14 +24,16 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>{{ form.ref_cad.label }}</th>
                   <th>{{ form.name.label }}</th>
+                  <th>{{ form.categoria_distrito.label }}</th>
+                  <th>{{ form.bairro.label }}</th>
                 </tr>
               </thead>
               <tfoot>
                 <tr>
-                  <th>{{ form.ref_cad.label }}</th>
                   <th>{{ form.name.label }}</th>
+                  <th>{{ form.categoria_distrito.label }}</th>
+                  <th>{{ form.bairro.label }}</th>
                 </tr>
               </tfoot>
               <tbody>
@@ -39,12 +41,17 @@
                 <tr>
                   <td>
                       <a href="{% url 'empresas:editar' empresa.pk %}">
-                        {{ empresa.ref_cad }}
+                        {{ empresa.name }}
                       </a>
                   </td>
                   <td>
                         <a href="{% url 'empresas:editar' empresa.pk %}">
-                        {{ empresa.name }}
+                        {{ empresa.distrito_verbose }}
+                      </a>
+                  </td>
+                  <td>
+                        <a href="{% url 'empresas:editar' empresa.pk %}">
+                        {{ empresa.bairro }}
                       </a>
                   </td>
                 </tr>

@@ -6,6 +6,7 @@ from django.urls import reverse
 
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
+from AudiBUN.empresas.models import DISTRITO_CHOICES
 
 @login_required
 def cadastro(request):

@@ -37,6 +37,9 @@ class EmpresaModel(Model):
     created_at = DateTimeField(auto_now_add=True)
 
 
+    def distrito_verbose(self):
+        return dict(DISTRITO_CHOICES)[self.categoria_distrito]
+
     def __str__(self):
         return self.name
 

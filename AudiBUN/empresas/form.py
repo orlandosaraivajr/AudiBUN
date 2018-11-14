@@ -47,7 +47,9 @@ class EmpresaForm(ModelForm):
             'phone': forms.TextInput(attrs={'class': 'form-control'}),
             'responsavel': forms.TextInput(attrs={'class': 'form-control'}),
             'situacao': forms.TextInput(attrs={'class': 'form-control'}),
-            'observacao': forms.Textarea(attrs={'class': 'form-control'}),
+            'observacao': forms.Textarea(attrs={'class': 'form-control',
+                                                'rows' : '7', 'cols' : '50'
+        }),
         }
         help_texts = {
             'ref_cad': ('Referência Cadastral.'),

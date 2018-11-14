@@ -78,7 +78,6 @@ class cadastroVistoriaPostValid(TestCase):
             email="tony@stark.com",
             phone="055-19-3541-0000",
             responsavel="Antony Stark",
-            situacao="Ativa",
             observacao="",
         )
         self.obj.save()
@@ -120,7 +119,6 @@ class cadastroVistoriaPostInvalidImage(TestCase):
             email="tony@stark.com",
             phone="055-19-3541-0000",
             responsavel="Antony Stark",
-            situacao="Ativa",
             observacao="",
         )
         self.obj.save()

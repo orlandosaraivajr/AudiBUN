@@ -10,7 +10,7 @@ class EmpresaFormTest(TestCase):
     def test_form_has_fields(self):
         expected = ['ref_cad', 'name','cnpj','categoria_atividade', 'atividade']
         expected += ['endereco','quadra','lote','categoria_distrito','bairro']
-        expected += ['email', 'phone', 'responsavel', 'situacao', 'observacao']
+        expected += ['email', 'phone', 'responsavel', 'observacao']
         self.assertSequenceEqual(expected, list(self.form.fields))
 
 
@@ -29,7 +29,6 @@ class CleanFormTest(TestCase):
         data['email'] = "tony@stark.com"
         data['phone'] = "055-19-3541-0000"
         data['responsavel'] = "Antony Stark"
-        data['situacao'] = "Ativa"
         data['observacao'] = "instalação em novembro de 2017"
         self.form = EmpresaForm(data)
         self.form.is_valid()
@@ -54,9 +53,6 @@ class CleanFormTest(TestCase):
 
     def test_responsavel_upper(self):
         self.assertEqual('ANTONY STARK', self.form.cleaned_data['responsavel'])
-
-    def test_situacao_upper(self):
-        self.assertEqual('ATIVA', self.form.cleaned_data['situacao'])
 
     def test_observacao_upper(self):
         self.assertEqual('INSTALAÇÃO EM NOVEMBRO DE 2017', self.form.cleaned_data['observacao'])
@@ -91,7 +87,6 @@ class Test_Field_Ref_Cad_Test(TestCase):
         self.data['email'] = ""
         self.data['phone'] = ""
         self.data['responsavel'] = ""
-        self.data['situacao'] = "Ativa"
         self.data['observacao'] = ""
         self.form = EmpresaForm(self.data)
         self.form.is_valid()
@@ -166,7 +161,6 @@ class Test_Field_CNPJ_Test(TestCase):
         self.data['email'] = ""
         self.data['phone'] = ""
         self.data['responsavel'] = ""
-        self.data['situacao'] = "Ativa"
         self.data['observacao'] = ""
         self.form = EmpresaForm(self.data)
         self.form.is_valid()

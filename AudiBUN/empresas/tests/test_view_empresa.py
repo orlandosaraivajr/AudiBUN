@@ -41,8 +41,8 @@ class cadastroEmpresaGet(TestCase):
     def test_html(self):
         tags = (
             ('<form', 1),
-            ('<input', 14),
-            ('type="text"', 11),
+            ('<input', 13),
+            ('type="text"', 10),
             ('type="email"', 1),
             ('type="submit"', 1)
         )
@@ -82,7 +82,6 @@ class cadastroEmpresaPostValid(TestCase):
         data['email'] = "tony@stark.com"
         data['phone'] = "055-19-3541-0000"
         data['responsavel'] = "Anotny Stark"
-        data['situacao'] = "Ativa"
         data['observacao'] = "1"
         self.resp = self.client.post(r('empresas:empresas_cadastrar'), data)
 

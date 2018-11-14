@@ -44,8 +44,7 @@ class visualizarEmpresaGet(TestCase):
             lote="2",
             email="tony@stark.com",
             phone="055-19-3541-0000",
-            responsavel="Anotny Stark",
-            situacao="Ativa"
+            responsavel="Anotny Stark"
         )
         self.obj.save()
         self.resp = self.client.get(r('empresas:empresas_listar', self.obj.pk))
@@ -59,7 +58,7 @@ class visualizarEmpresaGet(TestCase):
     def test_html(self):
         tags = (
             ('Visualizar cadastro da Empresa', 2),
-            ('readonly', 15),
+            ('readonly', 14),
 
         )
         for text, count in tags:

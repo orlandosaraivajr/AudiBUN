@@ -59,8 +59,7 @@ class editarEmpresaGet(TestCase):
             lote="2",
             email="tony@stark.com",
             phone="055-19-3541-0000",
-            responsavel="Anotny Stark",
-            situacao="Ativa"
+            responsavel="Anotny Stark"
         )
         self.obj.save()
         self.resp = self.client.get(r('empresas:editar', self.obj.pk))
@@ -124,7 +123,6 @@ class editarEmpresa_accept_blank_Post(TestCase):
             email="",
             phone="",
             responsavel="",
-            situacao="Ativa",
             observacao=""
         )
         self.obj.save()
@@ -140,7 +138,6 @@ class editarEmpresa_accept_blank_Post(TestCase):
              'email': 'zeninguem@terra.mx',
              'phone': '055-19-3541-0000',
              'responsavel': 'desconhecido',
-             'situacao': 'Ativa',
              'observacao': ''}
 
         self.resp = self.client.post(r('empresas:editar', self.obj.pk), d)
@@ -181,7 +178,6 @@ class editarEmpresaPost(TestCase):
             email="tony@stark.com",
             phone="055-19-3541-0000",
             responsavel="Anotny Stark",
-            situacao="Ativa",
             observacao="teste"
         )
         self.obj.save()
@@ -197,7 +193,6 @@ class editarEmpresaPost(TestCase):
              'email': 'zeninguem@terra.mx',
              'phone': '055-19-3541-0000',
              'responsavel': 'desconhecido',
-             'situacao': 'Ativa',
              'observacao': ''}
         self.resp = self.client.post(r('empresas:editar', self.obj.pk), d)
 
@@ -239,8 +234,7 @@ class editarEmpresaPostFail(TestCase):
             lote="2",
             email="tony@stark.com",
             phone="055-19-3541-0000",
-            responsavel="Anotny Stark",
-            situacao="Ativa"
+            responsavel="Anotny Stark"
         )
         self.obj.save()
         d = {'ref_cad': '12.5.12.01.002',
@@ -250,8 +244,7 @@ class editarEmpresaPostFail(TestCase):
              'lote': '20',
              'email': 'zeninguem@terra.mx',
              'phone': '055-19-3541-0000',
-             'responsavel': 'desconhecido',
-             'situacao': 'Ativa'}
+             'responsavel': 'desconhecido'}
         self.resp = self.client.post(r('empresas:editar', self.obj.pk), d)
 
     def test_template_home(self):

@@ -21,7 +21,6 @@ class Test_Field_Ref_Cad_Test(TestCase):
             email="tony@stark.com",
             phone="055-19-3541-0000",
             responsavel="Antony Stark",
-            situacao="Ativa",
             observacao="",
         )
         self.empresa.save()

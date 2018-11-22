@@ -31,6 +31,12 @@
                 {% endfor %}
             {% endif %}
         <div class="card-body">
+            {% if form.instance.pk %}
+                <a href="{% url 'empresas:empresas_vistorias' form.instance.pk %}">
+                    Checar Vistorias
+                </a>
+            {% endif %}
+
             <form action="." novalidate method="POST">
                 {% csrf_token %}
                 <div class="form-group">

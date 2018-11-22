@@ -6,7 +6,9 @@ from django.urls import reverse
 
 from AudiBUN.empresas.form import EmpresaForm
 from AudiBUN.empresas.models import EmpresaModel
-from AudiBUN.empresas.models import DISTRITO_CHOICES
+from AudiBUN.vistorias.form import VistoriaForm
+from AudiBUN.vistorias.models import VistoriaModel
+
 
 @login_required
 def cadastro(request):
@@ -74,3 +76,12 @@ def visualizar_empresa(request, id_empresa):
     form.read_only()
     context = {'form': form}
     return render(request, "empresas_visualizar.html", context)
+
+
+@login_required
+def vistorias_empresa(request, id_empresa):
+    id = id_empresa
+    vistorias = VistoriaModel.objects.filter(empresa_id=id)
+    context = {'form': VistoriaForm(),
+               'vistorias': vistorias}
+    return render(request, 'vistorias_listar_todas.html', context)

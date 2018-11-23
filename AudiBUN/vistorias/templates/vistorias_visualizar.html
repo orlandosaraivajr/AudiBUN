@@ -30,13 +30,27 @@
                             <label for="{{ form.observacao.id_for_label }}">{{ form.observacao.label }}</label>
                             {{ form.observacao}}
                         <br>
-                        <style>
-                        img {
-                            width: 100%;
-                            height: auto;
-                        }
-                        </style>
-                        <img src='{{ vistoria.imagem.url }}' alt='{{ obj.empresa }}'>
+                        {% if vistoria.imagem %}
+
+                            <style>
+                                img {
+                                    border: 1px solid #ddd; /* Gray border */
+                                    border-radius: 4px;  /* Rounded border */
+                                    padding: 5px; /* Some padding */
+                                    width: 150px; /* Set a small width */
+                                }
+
+                                /* Add a hover effect (blue shadow) */
+                                img:hover {
+                                    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+                                }
+                            </style>
+                            <img id= 'imagem'
+                                 src='{{ vistoria.imagem.url }}'
+                                 alt='{{ obj.empresa }}'
+                                 onclick="window.open('{{ vistoria.imagem.url }}','_blank')"
+                            >
+                        {% endif %}
                     </div>
                 </div>
         </div>

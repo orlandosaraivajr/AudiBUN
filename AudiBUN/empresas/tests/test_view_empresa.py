@@ -41,8 +41,8 @@ class cadastroEmpresaGet(TestCase):
     def test_html(self):
         tags = (
             ('<form', 1),
-            ('<input', 13),
-            ('type="text"', 10),
+            ('<input', 15),
+            ('type="text"', 12),
             ('type="email"', 1),
             ('type="submit"', 1)
         )
@@ -71,6 +71,8 @@ class cadastroEmpresaPostValid(TestCase):
                           password=self.password)
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
+        data['area_lote']  = "50 metros",
+        data['area_construida'] = "50 metros",
         data['name'] = "INDUSTRIA STARK LTDA"
         data['cnpj'] = "62.823.257/0001-09"
         data['categoria_atividade'] = "prestacao"

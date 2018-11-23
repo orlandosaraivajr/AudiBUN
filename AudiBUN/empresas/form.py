@@ -12,6 +12,8 @@ class EmpresaForm(ModelForm):
 
         labels = {
             'ref_cad': 'RC',
+            'area_lote': 'Área do Lote',
+            'area_construida': 'Área Construída',
             'name': 'Empresa',
             'cnpj': 'CNPJ',
             'categoria_atividade': 'Atividade',
@@ -28,6 +30,8 @@ class EmpresaForm(ModelForm):
         }
         widgets = {
             'ref_cad': forms.TextInput(attrs={'class': 'form-control'}),
+            'area_lote': forms.TextInput(attrs={'class': 'form-control'}),
+            'area_construida': forms.TextInput(attrs={'class': 'form-control'}),
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'cnpj': forms.TextInput(attrs={'class': 'form-control'}),
             'categoria_atividade': forms.Select(choices=ATIVIDADE_CHOICES,attrs={'class': 'form-control'}),
@@ -123,6 +127,12 @@ class EmpresaForm(ModelForm):
 
     def clean_name(self):
         return  self.cleaned_data['name'].upper()
+
+    def clean_area_lote(self):
+        return  self.cleaned_data['area_lote'].upper()
+
+    def clean_area_construida(self):
+        return  self.cleaned_data['area_construida'].upper()
 
     def clean_quadra(self):
         return self.cleaned_data['quadra'].upper()

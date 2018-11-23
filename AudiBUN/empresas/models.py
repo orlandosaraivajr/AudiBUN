@@ -18,6 +18,8 @@ DISTRITO_CHOICES = (
 
 class EmpresaModel(Model):
     ref_cad = CharField(max_length=20)
+    area_lote = CharField(max_length=20, default='')
+    area_construida = CharField(max_length=20, default='')
     name = CharField(max_length=100)
     cnpj = CharField(max_length=20, default='00.000.000/0000-00')
     categoria_atividade = CharField(max_length=10, \

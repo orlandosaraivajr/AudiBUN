@@ -113,6 +113,8 @@ class editarEmpresa_accept_blank_Post(TestCase):
                           password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
+            area_lote="50 metros",
+            area_construida="50 metros",
             name="INDUSTRIA STARK LTDA",
             atividade="ATIVIDADE MILITAR",
             cnpj="62.823.257/0001-09",
@@ -127,6 +129,8 @@ class editarEmpresa_accept_blank_Post(TestCase):
         )
         self.obj.save()
         d = {'ref_cad': '12.5.12.01.002',
+             'area_lote' : "50 metros",
+             'area_construida' : "50 metros",
              'name': 'Ozark',
              'categoria_atividade': 'comercio',
              'atividade': 'lavagem de dinheiro',
@@ -168,6 +172,8 @@ class editarEmpresaPost(TestCase):
                           password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
+            area_lote = "50 metros",
+            area_construida = "50 metros",
             name="INDUSTRIA STARK LTDA",
             cnpj="62.823.257/0001-09",
             atividade="ATIVIDADE MILITAR",
@@ -182,6 +188,8 @@ class editarEmpresaPost(TestCase):
         )
         self.obj.save()
         d = {'ref_cad': '12.5.12.01.002',
+             'area_lote' : "55 metros",
+             'area_construida' : "55 metros",
              'name': 'Ozark',
              'cnpj': '62.823.257/0001-09',
              'categoria_atividade': 'comercio',
@@ -206,6 +214,14 @@ class editarEmpresaPost(TestCase):
         q = EmpresaModel.objects.filter(pk=1)
         self.assertEqual(q[0].name, 'OZARK')
 
+    def test_data_changed_area_lote(self):
+        q = EmpresaModel.objects.filter(pk=1)
+        self.assertEqual(q[0].area_lote, '55 METROS')
+
+    def test_data_changed_area_construida(self):
+        q = EmpresaModel.objects.filter(pk=1)
+        self.assertEqual(q[0].area_construida, '55 METROS')
+
     def test_data_changed_email(self):
         q = EmpresaModel.objects.filter(pk=1)
         self.assertEqual(q[0].email, 'zeninguem@terra.mx')
@@ -227,6 +243,8 @@ class editarEmpresaPostFail(TestCase):
                           password=self.password)
         self.obj = EmpresaModel(
             ref_cad="12.5.12.01.001",
+            area_lote = "50 metros",
+            area_construida = "50 metros",
             name="INDUSTRIA STARK LTDA",
             atividade="ATIVIDADE MILITAR",
             endereco="RUA SHIELD, 199",
@@ -238,6 +256,8 @@ class editarEmpresaPostFail(TestCase):
         )
         self.obj.save()
         d = {'ref_cad': '12.5.12.01.002',
+             'area_lote' : "55 metros",
+             'area_construida' : "55 metros",
              'atividade': 'lavagem de dinheiro',
              'endereco': 'Rua elo Horizonte',
              'quadra': '102',

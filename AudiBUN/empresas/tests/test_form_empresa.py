@@ -8,7 +8,8 @@ class EmpresaFormTest(TestCase):
         self.form = EmpresaForm()
 
     def test_form_has_fields(self):
-        expected = ['ref_cad', 'name','cnpj','categoria_atividade', 'atividade']
+        expected = ['ref_cad', 'area_lote', 'area_construida', 'name','cnpj']
+        expected += ['categoria_atividade', 'atividade']
         expected += ['endereco','quadra','lote','categoria_distrito','bairro']
         expected += ['email', 'phone', 'responsavel', 'observacao']
         self.assertSequenceEqual(expected, list(self.form.fields))
@@ -18,6 +19,8 @@ class CleanFormTest(TestCase):
     def setUp(self):
         data = {}
         data['ref_cad'] = "12.5.12.01.001"
+        data['area_lote'] = "50 metros"
+        data['area_construida'] = "50 metros"
         data['name'] = "Industria Stark"
         data['cnpj'] = "62.823.257/0001-09"
         data['categoria_atividade'] = "prestacao"
@@ -76,6 +79,8 @@ class Test_Field_Ref_Cad_Test(TestCase):
     def setUp(self):
         self.data = {}
         self.data['ref_cad'] = "12.5.12.01.001"
+        self.data['area_lote'] = "50 metros"
+        self.data['area_construida'] = "50 metros"
         self.data['name'] = "xxx"
         self.data['cnpj'] = '62.823.257/0001-09'
         self.data['categoria_atividade'] = "prestacao"
@@ -150,6 +155,8 @@ class Test_Field_CNPJ_Test(TestCase):
     def setUp(self):
         self.data = {}
         self.data['ref_cad'] = "12.5.12.01.001"
+        self.data['area_lote'] = "50 metros"
+        self.data['area_construida'] = "50 metros"
         self.data['name'] = "xxx"
         self.data['cnpj'] = '62.823.257/0001-09'
         self.data['categoria_atividade'] = "prestacao"

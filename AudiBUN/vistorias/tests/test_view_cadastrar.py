@@ -31,7 +31,7 @@ class cadastroVistoriasGet(TestCase):
 
     def test_labels_html(self):
         tags = (
-            ('Vistorias', 2),
+            ('Vistorias', 3),
             ('Foto', 1),
         )
         for text, count in tags:

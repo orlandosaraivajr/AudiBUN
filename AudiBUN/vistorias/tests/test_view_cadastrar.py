@@ -97,8 +97,11 @@ class cadastroVistoriaPostValid(TestCase):
         self.assertTrue(EmpresaModel.objects.exists())
         self.assertTrue(VistoriaModel.objects.exists())
 
+    def test_redirect_site(self):
+        url = self.resp.url
+        self.assertEqual('/vistorias/', url)
 
-class cadastroVistoriaPostInvalidImage(TestCase):
+class cadastroVistoriaPostNoImage(TestCase):
     def setUp(self):
         self.username = 'admin'
         self.password = '123mudar'
@@ -130,12 +133,13 @@ class cadastroVistoriaPostInvalidImage(TestCase):
         self.resp = self.client.post(r('vistorias:vistorias_cadastrar'), self.data)
 
     def test_post(self):
-        self.assertEqual(200, self.resp.status_code)
+        self.assertEqual(302, self.resp.status_code)
 
     def test_saved_data(self):
         self.assertTrue(EmpresaModel.objects.exists())
-        self.assertFalse(VistoriaModel.objects.exists())
+        self.assertTrue(VistoriaModel.objects.exists())
 
-    def test_form_has_errors(self):
-        form = self.resp.context['form']
-        self.assertTrue(form.errors)
+    def test_redirect_site(self):
+        url = self.resp.url
+        self.assertEqual('/vistorias/', url)
+
